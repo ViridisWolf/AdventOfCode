@@ -24,6 +24,7 @@ def runtime(func, args=()):
 
 
 def main():
+    runtime(y2021.day19.main)
     runtime(y2021.day20.main)
     runtime(y2021.day21.main)
 
