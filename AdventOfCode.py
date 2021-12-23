@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 
+import argparse
 import pathlib
 import sys
 import time
@@ -23,14 +24,29 @@ def runtime(func, args=()):
     print(f"^^^ ran in {t1-t0:0.3f} seconds ^^^")
 
 
-def main():
-    #runtime(y2021.day19.main)
-    #runtime(y2021.day20.main)
-    #runtime(y2021.day21.main)
-    runtime(y2021.day22.main)
+def main(year=None, day=None):
+
+    years = {2021: y2021}
+
+    # Run each year.
+    if year is not None:
+        years = {year: years[year]}
+    for y in years.values():
+        days = y.get_days()
+
+        # Run each day function for this year.
+        if day is not None:
+            days = {day: days[day]}
+        for day in days.values():
+            runtime(day)
 
 
 if __name__ == '__main__':
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--year', type=int, help="The AoC year.")
+    parser.add_argument('--day', type=int, help="The AoC day.")
+    args = parser.parse_args()
+
     t0_all = time.time()
-    main()
+    main(args.year, args.day)
     print(f"Total time: {time.time() - t0_all:0.3f} seconds.")
