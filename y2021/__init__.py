@@ -25,5 +25,6 @@ def get_days():
         20: day20.main,
         21: day21.main,
         22: day22.main,
+        23: day23.main,
         }
     return days

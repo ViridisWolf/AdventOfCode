@@ -18,10 +18,12 @@ def part2(max_size=None, part=2):
         return (cx[1]-cx[0]+1) * (cy[1]-cy[0]+1) * (cz[1]-cz[0]+1)
 
     def shrink(top, layers):
-        """ Shrink all layers to the portion that overlaps with top. """
+        """ Shrink the next intersecting layer down to the portion that overlaps with top."""
+        if not layers:
+            return ()
         cx, cy, cz = top[1]
         shrunks = []
-        for layer in layers:
+        for index, layer in enumerate(layers):
             lx, ly, lz = layer[1]
             if (       lx[0] > cx[1] or ly[0] > cy[1] or lz[0] > cz[1]
                     or lx[1] < cx[0] or ly[1] < cy[0] or lz[1] < cz[0]):
@@ -32,7 +34,9 @@ def part2(max_size=None, part=2):
                           (max(lz[0], cz[0]), min(lz[1], cz[1]))
             debug("Shrunk layer to", shrinkydink)
             shrunks.append((layer[0], shrinkydink))
-        return tuple(shrunks)
+            if len(shrunks) >= 2:
+                break
+        return tuple(shrunks) + layers[index+1:]
 
     def split_at(cuboid, x=None, y=None, z=None):
         """
@@ -147,5 +151,5 @@ def part2(max_size=None, part=2):
 
 
 def main():
-    part2(max_size=50, part=1)
+    #part2(max_size=50, part=1)
     part2()
