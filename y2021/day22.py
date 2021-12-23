@@ -141,7 +141,7 @@ def part2(max_size=None, part=2):
         delta = get_change(instruction, tuple(layers))
         layers = [instruction] + layers
         on += delta
-        debug(f"... which gave a delta of {delta} for a total of {on} lit.")
+        debug(f"... which gave a delta of {delta} for a total of {on} cubes on.")
 
     print(f"Answer for day 22 part {part}: {on}")
 
