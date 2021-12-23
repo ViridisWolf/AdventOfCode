@@ -18,6 +18,9 @@ def get_days():
     """ Return a list of the main functions for each day in this year. """
 
     days = {
+        1: day1.main,
+        2: day2.main,
+        3: day3.main,
         19: day19.main,
         20: day20.main,
         21: day21.main,
