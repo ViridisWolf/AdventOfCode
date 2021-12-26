@@ -34,8 +34,9 @@ def part2(max_size=None, part=2):
                           (max(lz[0], cz[0]), min(lz[1], cz[1]))
             debug("Shrunk layer to", shrinkydink)
             shrunks.append((layer[0], shrinkydink))
-            if len(shrunks) >= 2 and not all:
-                break
+            # Why is it faster to do them all rather than only as far as is needed?
+            #if len(shrunks) >= 2 and not all:
+            #    break
         return tuple(shrunks) + layers[index+1:]
 
     def split_at(cuboid, x=None, y=None, z=None):
