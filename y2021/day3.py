@@ -2,7 +2,7 @@
 
 import math
 
-from .days import read_data
+from . import read_data
 
 
 def main():

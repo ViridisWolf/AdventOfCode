@@ -2,7 +2,7 @@
 
 from collections import namedtuple
 
-from .days import read_data
+from . import read_data
 
 def day13(silent=False):
     class Paper:

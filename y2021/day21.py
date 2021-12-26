@@ -2,7 +2,7 @@
 
 from functools import cache
 
-from .days import read_data
+from . import read_data
 
 
 def part1():

@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
-from .days import read_data
+from . import read_data
+
 
 def day16():
     opcode_to_num = {
