@@ -17,7 +17,7 @@ def part2(max_size=None, part=2):
         cx, cy, cz = cuboid
         return (cx[1]-cx[0]+1) * (cy[1]-cy[0]+1) * (cz[1]-cz[0]+1)
 
-    def shrink(top, layers):
+    def shrink(top, layers, all=False):
         """ Shrink the next intersecting layer down to the portion that overlaps with top."""
         if not layers:
             return ()
@@ -34,7 +34,7 @@ def part2(max_size=None, part=2):
                           (max(lz[0], cz[0]), min(lz[1], cz[1]))
             debug("Shrunk layer to", shrinkydink)
             shrunks.append((layer[0], shrinkydink))
-            if len(shrunks) >= 2:
+            if len(shrunks) >= 2 and not all:
                 break
         return tuple(shrunks) + layers[index+1:]
 
@@ -135,7 +135,7 @@ def part2(max_size=None, part=2):
 
     if max_size is not None:
         # Shrink everything down in size for part one.
-        instructions = shrink((None, ((-max_size, max_size),)*3), instructions)
+        instructions = shrink((None, ((-max_size, max_size),)*3), tuple(instructions), all=True)
 
     # Walk through the steps, counting how many cubes each one turned on.
     on = 0
@@ -151,5 +151,5 @@ def part2(max_size=None, part=2):
 
 
 def main():
-    #part2(max_size=50, part=1)
+    part2(max_size=50, part=1)
     part2()
