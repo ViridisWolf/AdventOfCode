@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-from .days import read_data
+from . import read_data
 
 def main():
     depth_1 = 0

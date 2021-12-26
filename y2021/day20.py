@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-from .days import read_data
+from . import read_data
 
 
 class Image:
