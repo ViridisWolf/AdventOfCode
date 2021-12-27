@@ -47,7 +47,7 @@ def get_days():
         21: day21.main,
         22: day22.main,
         23: day23.main,
-        #24: day24.main,
+        # 24: day24.main, # Day 24 was solved mostly by hand. The day24.py file exists, but only has some helper code.
         25: day25.main,
         }
     return days
