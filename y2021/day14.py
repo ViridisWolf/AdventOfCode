@@ -38,7 +38,7 @@ def day14(loops, part):
     # print("Element counts:", element_counts)
     counts = sorted(element_counts.values())
 
-    print(f"Answer to day 14 part {part}: {counts[-1] - counts[0]}")
+    print(f"Answer for day 14 part {part}: {counts[-1] - counts[0]}")
 
     return counts
 
