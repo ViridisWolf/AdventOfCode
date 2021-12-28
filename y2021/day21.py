@@ -109,7 +109,7 @@ def part2():
     uni_wins = 0
     for roll in p1wins:
         uni_wins += universe_wins_at(p1wins, p2wins, roll)
-    print(f"Answer for day 21 part2: {uni_wins}")
+    print(f"Answer for day 21 part 2: {uni_wins}")
 
 
 def main():
