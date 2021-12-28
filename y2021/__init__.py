@@ -44,6 +44,7 @@ def get_days():
         9: day9.main,
         10: day10.main,
         11: day11.main,
+        12: day12.main,
         13: day13.main,
         14: day14.main,
         15: day15.main,
