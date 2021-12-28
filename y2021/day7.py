@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-# Puzzle URL: https://adventofcode.com/2021/day/6
+# Puzzle URL: https://adventofcode.com/2021/day/7
 
 import statistics
 
