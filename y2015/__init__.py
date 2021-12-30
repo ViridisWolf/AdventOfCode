@@ -57,7 +57,7 @@ def get_days():
         # 22: day22.main,
         # 23: day23.main,
         # 24: day24.main,
-        # 25: day25.main,
+        25: day25.main,
     }
     return days
 
