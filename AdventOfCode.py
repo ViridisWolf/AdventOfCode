@@ -41,8 +41,8 @@ def main(year=None, day=None):
         # Run each day function for this year.
         if day is not None:
             days = {day: days[day]}
-        for day in days.values():
-            runtime(day)
+        for d in days.values():
+            runtime(d)
 
 
 if __name__ == '__main__':
