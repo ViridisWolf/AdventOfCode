@@ -14,7 +14,7 @@ def day4(part=1):
 
     # Do the calculations.
     while True:
-        key = f"{puzzle_input}{number}"
+        key = f"iwrupvqb{number}"
         md5 = hashlib.md5(key.encode('utf8'))
         if md5.hexdigest().startswith(zeros):
             break
