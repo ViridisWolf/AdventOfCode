@@ -28,7 +28,7 @@ def print_steps(steps):
         print('  #########  ')
 
 
-def part2(part=2):
+def day23(part=2):
     move_costs = {'A': 1, 'B': 10, 'C': 100, 'D': 1000}
     desired_room = {'A': 0, 'B': 1, 'C': 2, 'D': 3}
     all_rooms = [('r', x, y) for x in range(4) for y in range(4)]
@@ -236,5 +236,5 @@ def part2(part=2):
 
 
 def main():
-    part2(part=1)
-    part2()
+    day23(part=1)
+    day23()

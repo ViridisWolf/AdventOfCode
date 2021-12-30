@@ -28,8 +28,8 @@ def day6(part=2):
     for day in range(days):
         new_fish_counts = {0: 0, 1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0, 7: 0, 8: 0}
         for cycle, count in fish_counts_by_cycle.items():
-            for cycle, count in get_new_fishies(cycle, count):
-                new_fish_counts[cycle] += count
+            for new_cycle, new_count in get_new_fishies(cycle, count):
+                new_fish_counts[new_cycle] += new_count
         fish_counts_by_cycle = new_fish_counts
 
     total = sum(fish_counts_by_cycle.values())

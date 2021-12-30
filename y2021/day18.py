@@ -150,5 +150,6 @@ def day18():
             best = max(best, mag)
     print(f"Answer for day 18 part 2: {best}")
 
+
 def main():
     day18()
