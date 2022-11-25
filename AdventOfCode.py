@@ -9,6 +9,7 @@ sys.path.insert(1, pathlib.Path(__name__).parent)
 
 import y2015
 import y2019
+import y2020
 import y2021
 
 
@@ -31,6 +32,7 @@ def main(year=None, day=None):
     years = {
             2015: y2015,
             2019: y2019,
+            2020: y2020,
             2021: y2021,
             }
 
