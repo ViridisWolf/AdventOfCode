@@ -14,9 +14,9 @@ def runtime(func, args=()):
     :return: None.
     """
 
-    t0 = time.time()
+    t0 = time.perf_counter()
     result = func(*args)
-    t1 = time.time()
+    t1 = time.perf_counter()
     print(f"^^^ ran in {t1-t0:0.3f} seconds ^^^")
 
 
@@ -74,6 +74,6 @@ if __name__ == '__main__':
     parser.add_argument('--day', type=int, help="The AoC day.")
     args = parser.parse_args()
 
-    t0_all = time.time()
+    t0_all = time.perf_counter()
     main(args.year, args.day)
-    print(f"Total time: {time.time() - t0_all:0.3f} seconds.")
+    print(f"Total time: {time.perf_counter() - t0_all:0.3f} seconds.")
