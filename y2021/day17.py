@@ -76,8 +76,8 @@ def day17():
                 break
 
     highest = max([x[2] for x in hits])
-    print(f"Answer for day 17 part 1:", highest)
-    print(f"Answer for day 17 part 2:", len(hits))
+    print(f"Answer for 2021 day 17 part 1:", highest)
+    print(f"Answer for 2021 day 17 part 2:", len(hits))
 
 
 def main():

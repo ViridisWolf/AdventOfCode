@@ -97,7 +97,7 @@ def day15(tile_right, tile_down, part):
 
     risk = sum([risk_map[n] for n in path[1:]])
     # Don't include risk of first node because there is no risk in leaving a node.
-    print(f"Answer for day 15 part {part}: {risk}")  # 388, 2819
+    print(f"Answer for 2021 day 15 part {part}: {risk}")  # 388, 2819
     # risk_path = [str(risk_map[x]) for x in path]; print(''.join(risk_path))
 
 

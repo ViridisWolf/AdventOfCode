@@ -17,7 +17,7 @@ def main():
     gamma = sum([1 << i for i, x in enumerate(reversed(bits)) if x])
     epsilon = (~gamma) & ((1 << len(bits)) - 1)
     power = gamma * epsilon
-    print(f"Answer for day 3 part 1: {power}")
+    print(f"Answer for 2021 day 3 part 1: {power}")
 
     o2_candidates = lines[:]
     co2_candidates = lines[:]
@@ -34,4 +34,4 @@ def main():
 
     o2_rating = int(o2_candidates[0], 2)
     co2_rating = int(co2_candidates[0], 2)
-    print(f"Answer for day 3 part 2: {o2_rating * co2_rating}")
+    print(f"Answer for 2021 day 3 part 2: {o2_rating * co2_rating}")

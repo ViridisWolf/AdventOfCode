@@ -119,8 +119,8 @@ def day16():
     global version_sum
     version_sum = 0
     outer_packet, _ = decode_packet(data)
-    print("Answer for day 16 part 1:", version_sum)
-    print("Answer for day 16 part 2:", do_opcode(outer_packet))
+    print("Answer for 2021 day 16 part 1:", version_sum)
+    print("Answer for 2021 day 16 part 2:", do_opcode(outer_packet))
 
 
 def main():

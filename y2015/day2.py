@@ -19,7 +19,7 @@ def day2():
         ribbon += vol + sum(sides_len[0:2])
 
     print(f"Answer for 2015 day 2 part 1: {paper}")
-    print(f"Answer for 2015 day 2 part 1: {ribbon}")
+    print(f"Answer for 2015 day 2 part 2: {ribbon}")
 
 
 def main():

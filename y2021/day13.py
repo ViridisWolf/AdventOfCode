@@ -90,7 +90,7 @@ def day13(silent=False):
 
     for count, fold in enumerate(folds):
         if count == 1:
-            print(f"Answer for day 13 part 1: {paper.count()}")
+            print(f"Answer for 2021 day 13 part 1: {paper.count()}")
         # print(f"{paper.count()} dots before fold {fold}", end='')
         x, y = None, None
         assert fold[0] in ['x', 'y']

@@ -91,7 +91,8 @@ def part1():
                 active_south = next_active_south
                 cucumbers = next_cucumbers
 
-    print(f"Steps taken to stop moving: {steps}")
+    # print(f"Steps taken to stop moving: {steps}")
+    print(f"Answer for 2021 day 25 part 1: {steps}")
 
 
 def main():

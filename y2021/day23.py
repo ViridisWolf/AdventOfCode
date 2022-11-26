@@ -232,7 +232,7 @@ def day23(part=2):
     lowest_cost, steps = get_shortest_cost(hall, rooms, 0, None)
     if DEBUG:
         print_steps(((None, hall, rooms),) + steps)
-    print(f"Answer for day 23 part {part}: {lowest_cost}")
+    print(f"Answer for 2021 day 23 part {part}: {lowest_cost}")
 
 
 def main():

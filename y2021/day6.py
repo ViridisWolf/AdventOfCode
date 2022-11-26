@@ -33,7 +33,7 @@ def day6(part=2):
         fish_counts_by_cycle = new_fish_counts
 
     total = sum(fish_counts_by_cycle.values())
-    print(f"Answer for day 6 part {part}: {total}")
+    print(f"Answer for 2021 day 6 part {part}: {total}")
 
 
 def main():
