@@ -23,7 +23,7 @@ def day1_part2(lines):
                     answer = num1 * num2 * num3
                     break
 
-    print(f"Answer for 2020 day 1 part 1: {answer}")
+    print(f"Answer for 2020 day 1 part 2: {answer}")
 
 
 def main():

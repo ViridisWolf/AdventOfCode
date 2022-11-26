@@ -81,7 +81,7 @@ def day12(part):
     paths = get_paths('start', caves, end='end', revisit_small_cave=True if part == 2 else False)
     # paths = [[c.name for c in path] for path in paths]
     # pprint(sorted(paths))
-    print(f"Answer for day 12 part {part} is: {len(paths)}")
+    print(f"Answer for 2021 day 12 part {part}: {len(paths)}")
 
 
 def main():

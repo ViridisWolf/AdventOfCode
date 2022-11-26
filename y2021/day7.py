@@ -27,7 +27,7 @@ def day7(part=2):
     else:
         raise AssertionError("'part' must be 1 or 2.")
 
-    print(f"Answer for day 7 part {part}: {int(best)}")
+    print(f"Answer for 2021 day 7 part {part}: {int(best)}")
 
 def main():
     day7(part=1)

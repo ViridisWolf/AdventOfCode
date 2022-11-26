@@ -24,5 +24,5 @@ def main():
         else:
             raise AssertionError("Should not have gotten here.")
 
-    print(f"Answer for day 2 part 1: {depth_1 * horz}")
-    print(f"Answer for day 2 part 2: {depth_2 * horz}")
+    print(f"Answer for 2021 day 2 part 1: {depth_1 * horz}")
+    print(f"Answer for 2021 day 2 part 2: {depth_2 * horz}")

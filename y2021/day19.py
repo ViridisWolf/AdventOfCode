@@ -171,13 +171,13 @@ def main():
     for scanner in scanners:
         for point in scanner.points:
             beacon_maps.add(point)
-    print(f"Answer for day 19 part 1: {len(beacon_maps)}.")
+    print(f"Answer for 2021 day 19 part 1: {len(beacon_maps)}")
 
     dist = 0
     for index, s1 in enumerate(scanners):
         for s2 in scanners[index:]:
             dist = max(dist, manhattan_distance(s1, s2))
-    print(f"Answer for day 19 part 2:", dist)
+    print(f"Answer for 2021 day 19 part 2:", dist)
 
 
 def tests():

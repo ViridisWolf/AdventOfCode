@@ -148,7 +148,7 @@ def part2(max_size=None, part=2):
         on += delta
         debug(f"... which gave a delta of {delta} for a total of {on} cubes on.")
 
-    print(f"Answer for day 22 part {part}: {on}")
+    print(f"Answer for 2021 day 22 part {part}: {on}")
 
 
 def main():
