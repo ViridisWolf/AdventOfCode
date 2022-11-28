@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-from . import read_data
+from AdventOfCode import read_data
 
 
 class Image:
@@ -71,8 +71,8 @@ class Image:
 
 
 def main():
-    lines = read_data('day20.data')
-    # lines = read_data('day20_test.data')
+    lines = read_data(__file__)
+    # lines = read_data(__file__, filename='data20_test.data')
     algorithm = lines[0]
     algorithm = algorithm.replace('.', '0')
     algorithm = algorithm.replace('#', '1')

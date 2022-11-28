@@ -4,12 +4,12 @@ import random
 import re
 from pprint import pprint
 
-from . import read_data
+from AdventOfCode import read_data
 
 
 def model_check_orig(model_number):
     # Convert puzzle input to Python code for easier reading.
-    lines = read_data('day24.data')
+    lines = read_data(__file__)
     index = 0
     instructions = []
     for line in lines:

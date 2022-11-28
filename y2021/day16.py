@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-from . import read_data
+from AdventOfCode import read_data
 
 
 def day16():
@@ -111,7 +111,7 @@ def day16():
         raise
 
     # Done defining things, start doing.
-    lines = read_data('day16.data')
+    lines = read_data(__file__)
     data = ''
     for nybble in lines[0]:
         data += '{:04b}'.format(int(nybble, 16))

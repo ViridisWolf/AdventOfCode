@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-from . import read_data
+from AdventOfCode import read_data
 
 
 def part1():
@@ -8,7 +8,7 @@ def part1():
     # Up is +y, right is +x.
     x, y = 0, 0
 
-    lines = read_data('day3.data')
+    lines = read_data(__file__)
     for line in lines:
         for char in line:
             if char == 'v':
@@ -34,7 +34,7 @@ def part2():
                 1: [0, 0]}
     turn = 0
 
-    lines = read_data('day3.data')
+    lines = read_data(__file__)
     for line in lines:
         for char in line:
             if char == 'v':

@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-from . import read_data
+from AdventOfCode import read_data
 
 
 def count_increases(part1=False):
@@ -14,7 +14,7 @@ def count_increases(part1=False):
         window = []
         win_index = (0, 0)
 
-    lines = read_data('day1.data')
+    lines = read_data(__file__)
     for line in lines:
         window = window[win_index[0]: win_index[1]] + [int(line.strip())]
 

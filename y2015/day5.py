@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
 
-from . import read_data
+from AdventOfCode import read_data
 
 
 def part1():
     nice = 0
     vowels = 'aeiou'
     bad_strings = ('ab', 'cd', 'pq', 'xy')
-    lines = read_data('day5.data')
+    lines = read_data(__file__)
 
     for line in lines:
         repeated = False
@@ -33,7 +33,7 @@ def part1():
 
 def part2():
     nice = 0
-    lines = read_data('day5.data')
+    lines = read_data(__file__)
 
     for line in lines:
         repeated = False

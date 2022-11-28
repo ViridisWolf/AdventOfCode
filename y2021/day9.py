@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-from . import read_data
+from AdventOfCode import read_data
 
 
 def get_neighbors(location, heightmap, return_location=False):
@@ -63,7 +63,7 @@ def day9():
     minimums = []
 
     # Read in the height map.
-    for y, line in enumerate(read_data('day9.data')):
+    for y, line in enumerate(read_data(__file__)):
         for x, height in enumerate(line):
             if x >= len(heightmap):
                 heightmap.append([])

@@ -2,7 +2,7 @@
 
 import math
 
-from . import read_data
+from AdventOfCode import read_data
 
 
 def day17():
@@ -45,7 +45,7 @@ def day17():
                 hit = 'y'
             return hit
 
-    lines = read_data('day17.data')
+    lines = read_data(__file__)
     for line in lines:
         if 'target area: ' in line:
             x, y = line[13:].split(', ')

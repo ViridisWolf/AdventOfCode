@@ -2,7 +2,7 @@
 
 from collections import namedtuple
 
-from . import read_data
+from AdventOfCode import read_data
 
 
 def day15(tile_right, tile_down, part):
@@ -39,7 +39,7 @@ def day15(tile_right, tile_down, part):
         return 1
         # return risk_est  # This causes incorrect results...
 
-    lines = read_data('day15.data')
+    lines = read_data(__file__)
     map_width = len(lines[0])
     map_height = len(lines)
 

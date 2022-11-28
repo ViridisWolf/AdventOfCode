@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-from . import read_data
+from AdventOfCode import read_data
 
 
 def day4():
@@ -18,7 +18,7 @@ def day4():
                 return True
 
     # Read input.
-    lines = read_data('day4.data')
+    lines = read_data(__file__)
     draws = [int(x) for x in lines[0].split(',')]
     boards = []
     board = None

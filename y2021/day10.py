@@ -2,7 +2,7 @@
 
 import statistics
 
-from . import read_data
+from AdventOfCode import read_data
 
 corrupted_points_table = {')': 3, ']': 57, '}': 1197, '>': 25137}
 missing_points_table = {')': 1, ']': 2, '}': 3, '>': 4}
@@ -14,7 +14,7 @@ def day10():
     corrupted_characters = []
     missing_scores = []
 
-    lines = read_data('day10.data')
+    lines = read_data(__file__)
     for line in lines:
         corrupted = False
         stack = []
