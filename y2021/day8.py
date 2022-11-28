@@ -3,7 +3,7 @@
 # Puzzle URL: https://adventofcode.com/2021/day/8
 
 
-from . import read_data
+from AdventOfCode import read_data
 
 
 def day8():
@@ -14,7 +14,7 @@ def day8():
 
     # Parse the input into a more usable format.
     displays = []
-    lines = read_data('day8.data')
+    lines = read_data(__file__)
     for line in lines:
         patterns = []
         outputs = []

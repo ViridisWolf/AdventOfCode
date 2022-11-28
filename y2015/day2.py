@@ -1,13 +1,13 @@
 #!/usr/bin/env python
 
-from . import read_data
+from AdventOfCode import read_data
 
 
 def day2():
     paper = 0
     ribbon = 0
 
-    lines = read_data('day2.data')
+    lines = read_data(__file__)
     for box in lines:
         h, w, l = [int(x) for x in box.split('x')]
         sides_area = (h*w, h*l, w*l)

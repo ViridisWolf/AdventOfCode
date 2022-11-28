@@ -2,7 +2,7 @@
 
 from collections import namedtuple
 
-from . import read_data
+from AdventOfCode import read_data
 
 def day13(silent=False):
     class Paper:
@@ -73,7 +73,7 @@ def day13(silent=False):
     folds = []
     paper = Paper()
 
-    lines = read_data('day13.data')
+    lines = read_data(__file__)
 
     for line in lines:
         line = line.strip()

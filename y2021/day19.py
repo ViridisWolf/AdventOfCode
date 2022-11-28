@@ -3,7 +3,7 @@
 import copy
 from functools import cache
 
-from . import read_data
+from AdventOfCode import read_data
 
 DEBUG = False
 
@@ -137,7 +137,7 @@ def main():
 
     # Parse the scanner data.
     scanners = []
-    lines = read_data('day19.data')
+    lines = read_data(__file__)
     for line in lines:
         if '-- scanner ' in line:
             id = int(line[11:].split()[0])

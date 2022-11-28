@@ -6,6 +6,23 @@ import pathlib
 import time
 
 
+def read_data(caller, filename=None):
+    """
+    Read the specified input data file and strip any extra white space from each line.
+
+    :param caller: The path of the caller, e.g. __file__.
+    :param filename: The name of the data file, or None to use the format of "day#.data".
+    :return: List of line strings.
+    """
+    if filename is None:
+        filename = pathlib.Path(caller).stem + '.data'
+    datafile = pathlib.Path(caller).parent / 'data' / filename
+    with open(datafile, 'r') as f:
+        lines = f.readlines()
+    lines = [line.strip() for line in lines]
+    return lines
+
+
 def runtime(func, args=()):
     """
     Display the runtime of the specified function.

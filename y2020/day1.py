@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-from . import read_data
+from AdventOfCode import read_data
 
 
 def day1(lines):
@@ -27,7 +27,7 @@ def day1_part2(lines):
 
 
 def main():
-    lines = read_data('day1.data')
+    lines = read_data(__file__)
     numbers = tuple(int(x) for x in lines)
     day1(numbers)
     day1_part2(numbers)

@@ -2,7 +2,7 @@
 
 import copy
 
-from . import read_data
+from AdventOfCode import read_data
 
 
 def part1():
@@ -30,7 +30,7 @@ def part1():
         print()
 
     cucumbers = {}
-    for row, line in enumerate(read_data('day25.data')):
+    for row, line in enumerate(read_data(__file__)):
         for x, char in enumerate(line):
             if char != '.':
                 cucumbers[x,row] = char

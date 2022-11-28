@@ -3,7 +3,7 @@
 import copy
 import math
 
-from . import read_data
+from AdventOfCode import read_data
 
 
 def day18():
@@ -130,7 +130,7 @@ def day18():
         left, right = snail
         return 3*magnitude(left) + 2*magnitude(right)
 
-    lines = read_data('day18.data')
+    lines = read_data(__file__)
     sea = []
     for line in lines:
         sea.append(eval(line))

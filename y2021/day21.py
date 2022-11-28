@@ -2,7 +2,7 @@
 
 from functools import cache
 
-from . import read_data
+from AdventOfCode import read_data
 
 
 def part1():
@@ -13,7 +13,7 @@ def part1():
             sum += last_roll + 1
         return last_roll, sum
 
-    lines = read_data('day21.data')
+    lines = read_data(__file__)
     players = {}
     for line in lines:
         if 'Player ' in line:

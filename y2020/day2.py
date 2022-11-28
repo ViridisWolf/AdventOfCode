@@ -2,7 +2,7 @@
 
 import re
 
-from . import read_data
+from AdventOfCode import read_data
 
 
 def day2(passwords):
@@ -27,7 +27,7 @@ def day2(passwords):
 
 
 def main():
-    lines = read_data('day2.data')
+    lines = read_data(__file__)
     passwords = []
     for line in lines:
         match = re.search('(\d+)-(\d+) (\w): (\w+)', line)

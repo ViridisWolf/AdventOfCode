@@ -2,7 +2,7 @@
 
 from pprint import pprint
 
-from . import read_data
+from AdventOfCode import read_data
 
 
 class Cave:
@@ -67,7 +67,7 @@ def get_paths(start, caves, end='end', revisit_small_cave=False):
 def day12(part):
     caves = {}
 
-    for line in read_data('day12.data'):
+    for line in read_data(__file__):
         name1, name2 = line.split('-')
         if name1 not in caves:
             caves[name1] = Cave(name1)

@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-from . import read_data
+from AdventOfCode import read_data
 
 
 class TreeMap:
@@ -56,5 +56,5 @@ def day(lines):
 
 
 def main():
-    lines = read_data(__name__.rsplit('.')[-1] + '.data')
+    lines = read_data(__file__)
     day(lines)

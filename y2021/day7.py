@@ -4,12 +4,12 @@
 
 import statistics
 
-from . import read_data
+from AdventOfCode import read_data
 
 
 def day7(part=2):
     # Part one seems like it should just be the average of the crab positions.
-    lines = read_data('day7.data')
+    lines = read_data(__file__)
     positions = [int(x) for x in lines[0].split(',')]
 
     if part == 1:

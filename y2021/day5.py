@@ -2,7 +2,7 @@
 
 # Puzzle URL: https://adventofcode.com/2021/day/5
 
-from . import read_data
+from AdventOfCode import read_data
 
 
 DEBUG = False
@@ -37,7 +37,7 @@ def day5(part=1):
         return line_points
 
     points = {}
-    lines = read_data('day5.data')
+    lines = read_data(__file__)
     for line in lines:
         line = line.split(' -> ')
         p0, p1 = line[0].split(','), line[1].split(',')

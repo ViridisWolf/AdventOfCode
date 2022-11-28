@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-from . import read_data
+from AdventOfCode import read_data
 
 DEBUG = False
 
@@ -62,7 +62,7 @@ def day11(part):
         # Set steps to arbitrarily high.
         steps = 9999999
 
-    for y, line in enumerate(read_data('day11.data')):
+    for y, line in enumerate(read_data(__file__)):
         row = []
         for char in line:
             row.append(int(char))

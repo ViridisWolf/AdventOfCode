@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-from . import read_data
+from AdventOfCode import read_data
 
 
 DEBUG = False
@@ -120,7 +120,7 @@ def part2(max_size=None, part=2):
 
     # Done defining functions. Read the input data.
     instructions = []
-    lines = read_data('day22.data')
+    lines = read_data(__file__)
     for line in lines:
         turn, line = line.split(' ', 1)
         turn = True if turn == 'on' else False

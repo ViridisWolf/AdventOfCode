@@ -2,11 +2,11 @@
 
 import math
 
-from . import read_data
+from AdventOfCode import read_data
 
 
 def main():
-    lines = read_data('day3.data')
+    lines = read_data(__file__)
 
     bits = [int(x) for x in lines[0].strip()]
     for count, line in enumerate(lines[1:]):

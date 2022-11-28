@@ -1,13 +1,13 @@
 #!/usr/bin/env python
 
-from . import read_data
+from AdventOfCode import read_data
 
 
 def day14(loops, part):
     """ Polymerizaion """
     pair_rules = {}
 
-    lines = read_data('day14.data')
+    lines = read_data(__file__)
     template = lines[0].strip()
     for line in lines[1:]:
         line = line.strip()

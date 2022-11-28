@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-from . import read_data
+from AdventOfCode import read_data
 
 def main():
     depth_1 = 0
@@ -8,7 +8,7 @@ def main():
     horz = 0
     aim = 0
 
-    lines = read_data('day2.data')
+    lines = read_data(__file__)
 
     for line in lines:
         line = line.strip()
