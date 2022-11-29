@@ -22,7 +22,7 @@ def part1_old(lines):
 
         bag_types[bag] = []
         for subbag in contents.split(', '):
-            match = re.search('\d* ?(.*?) bags?\.?', subbag)
+            match = re.search(r'\d* ?(.*?) bags?\.?', subbag)
             color = match.group(1)
             bag_types[bag].append(color)
 
@@ -58,7 +58,7 @@ def day_old(lines):
         bag = bag_types[bag_color]
 
         for item in contents.split(', '):
-            match = re.search('(\d*) ?(.*?) bags?\.?', item)
+            match = re.search(r'(\d*) ?(.*?) bags?\.?', item)
             count, sub_color = match.groups()
             if sub_color == 'no other':
                 continue
@@ -121,7 +121,7 @@ def day(lines):
         bag = bag_types[bag_color]
 
         for item in contents.split(', '):
-            match = re.search('(\d*) ?(.*?) bags?\.?', item)
+            match = re.search(r'(\d*) ?(.*?) bags?\.?', item)
             count, sub_color = match.groups()
             if sub_color == 'no other':
                 continue

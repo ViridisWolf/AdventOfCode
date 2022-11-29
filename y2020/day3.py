@@ -54,7 +54,6 @@ def day(lines):
     print(f"Answer for 2020 day 3 part 2: {tree_mult}")
 
 
-
 def main():
     lines = read_data(__file__)
     day(lines)
