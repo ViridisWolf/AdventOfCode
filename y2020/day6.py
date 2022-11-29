@@ -28,7 +28,7 @@ def part1(lines):
         count = bin(group).count('1')
         group_sums.append(count)
 
-    print(f"Answer for 2020 day 5 part 1: {sum(group_sums)}")
+    print(f"Answer for 2020 day 6 part 1: {sum(group_sums)}")
 
 
 def part2(lines):
@@ -57,7 +57,7 @@ def part2(lines):
         count = bin(group).count('1')
         group_sums.append(count)
 
-    print(f"Answer for 2020 day 5 part 2: {sum(group_sums)}")
+    print(f"Answer for 2020 day 6 part 2: {sum(group_sums)}")
 
 
 def main():
