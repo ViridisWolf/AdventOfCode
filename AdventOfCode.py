@@ -46,6 +46,7 @@ def get_years():
         if year.isnumeric():
             years.append(year)
     assert years, f"No years found!"
+    years.sort(key=lambda x: int(x))
     return years
 
 
