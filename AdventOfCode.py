@@ -11,11 +11,11 @@ def read_data(caller, filename=None):
     Read the specified input data file and strip any extra white space from each line.
 
     :param caller: The path of the caller, e.g. __file__.
-    :param filename: The name of the data file, or None to use the format of "day#.data".
+    :param filename: The name of the data file, or None to use the format of "day#.txt".
     :return: List of line strings.
     """
     if filename is None:
-        filename = pathlib.Path(caller).stem + '.data'
+        filename = pathlib.Path(caller).stem + '.txt'
     datafile = pathlib.Path(caller).parent / 'data' / filename
     with open(datafile, 'r') as f:
         lines = f.readlines()
