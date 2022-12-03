@@ -8,8 +8,9 @@ priority = {v: i for i, v in enumerate(' abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLM
 
 def get_duplicate(line):
     """ Return the item with is in both the first of and second half of the iterable.  Must only be one such item. """
-    bag1 = line[0:len(line) // 2]
-    bag2 = line[len(line) // 2:]
+    halfway = len(line) // 2
+    bag1 = line[0:halfway]
+    bag2 = line[halfway:]
     for item in bag1:
         if item in bag2:
             return item
