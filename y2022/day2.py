@@ -40,7 +40,7 @@ def day(data, part):
             score += 6
         # print(f"opp: {opponent}, me: {me}, score {score}")
 
-    print(f"Answer for 2020 day 2 part {part}: {score}")
+    print(f"Answer for 2022 day 2 part {part}: {score}")
 
 
 def main():
