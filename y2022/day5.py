@@ -75,11 +75,13 @@ def day_v2(data, part):
 
 def day_v3(data, part):
     """ Read in an initial stack structure, perform the specified movements, and print the final top crates. """
-    # v3 differs from v2 in three ways:
+    # v3 differs from v2 in a few ways:
     # 1) Stack initialization is changed to use slicing instead of transposition.
     # 2) The order within each stack is inverted, as benchmarks showed this to be slightly faster.
     # 3) For speed, regex parsing of the move instruction is replaced with split().
+    # 4) When removing crates from a stack, `del` is used instead of creating a new list.  Small speed improvement.
 
+    # Initialize the stacks.
     stacks = {}
     for index, line in enumerate(data):
         if '[' not in line:
@@ -90,6 +92,7 @@ def day_v3(data, part):
             if crate != ' ':
                 stacks[stack].insert(0, crate)
 
+    # Perform the move operations.
     for line in data[index+2:]:
         _, count, _, source, _, dest = line.split(' ')
         count, source, dest = int(count), int(source), int(dest)
@@ -97,7 +100,7 @@ def day_v3(data, part):
         crates = stacks[source][-count:]
         if part == 1:
             crates.reverse()
-        stacks[source] = stacks[source][:-count]
+        del stacks[source][-count:]
         stacks[dest].extend(crates)
 
     answer = ''.join([s[-1] for s in stacks.values()])
