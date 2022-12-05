@@ -19,7 +19,7 @@ def read_data(caller, filename=None):
     datafile = pathlib.Path(caller).parent / 'data' / filename
     with open(datafile, 'r') as f:
         lines = f.readlines()
-    lines = [line.strip() for line in lines]
+    lines = [line.strip('\n\r') for line in lines]
     return lines
 
 
