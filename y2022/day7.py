@@ -15,7 +15,7 @@ def day(data):
             cmd = line[2:].split(' ')
             # print(f"Command:", cmd)
             if cmd[0] == "cd":
-                current_command = "ls"
+                current_command = "cd"
                 folder = cmd[1]
                 if folder == '/':
                     current_directories = ['/']
