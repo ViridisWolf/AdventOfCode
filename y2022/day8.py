@@ -182,8 +182,8 @@ def day_v2(data):
 
     # Part 2 calculations.
     best_score = 0
-    for y in range(size[1]):
-        for x in range(size[0]):
+    for y in range(1, size[1]-1):
+        for x in range(1, size[0]-1):
             distances = scenic_distances(trees, size, (x, y))
             score = math.prod(distances)
             best_score = max(best_score, score)
