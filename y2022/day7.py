@@ -27,6 +27,7 @@ def day(data):
                 # print(f"New directories: {current_directories}")
             elif cmd[0] == "ls":
                 current_command = "ls"
+                assert current_directories[-1] not in directory_sizes
             else:
                 raise AssertionError(f"Unknown command {cmd}")
         else:
