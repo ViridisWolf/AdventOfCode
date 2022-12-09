@@ -21,24 +21,13 @@ class PlanckRope:
         elif (abs(dx) + abs(dy)) == 1 or (abs(dx) == 1 and abs(dy) == 1):
             # Touching; don't move.
             pass
-        elif (dx == 0 or dy == 0) and (abs(dx) == 2 or abs(dy) == 2):
-            # Straight behind.
-            tail = tail[0] + dx//2, tail[1] + dy//2
-        elif (abs(dx) == 2 and abs(dy) == 1) or (abs(dx) == 1 and abs(dy) == 2):
-            # Diagonal movement.
-            if abs(dx) == 1:
-                # Move to match head in x.
-                tail = head[0], tail[1] + dy//2
-            elif abs(dy) == 1:
-                # Move to match head in y.
-                tail = tail[0] + dx//2, head[1]
-            else:
-                raise AssertionError
-        elif abs(dx) + abs(dy) == 4:
-            # More diagonal movement.
-            tail = tail[0] + dx//2, tail[1] + dy//2
         else:
-            raise AssertionError
+            assert abs(dx) == 2 or abs(dy) == 2
+            assert abs(dx) < 3 and abs(dy) < 3
+            # For both x and y, take at most one step towards the head.
+            x = tail[0] + (1 if dx > 0 else -1 if dx < 0 else 0)
+            y = tail[1] + (1 if dy > 0 else -1 if dy < 0 else 0)
+            tail = x, y
         return tail
 
     def move_head(self, dx, dy):
