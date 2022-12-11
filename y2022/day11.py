@@ -35,7 +35,7 @@ def day(data, part):
 
     for _ in range(20 if part == 1 else 10_000):
         for thief in thieves:
-            for item in thief['items'][:]:
+            for item in thief['items']:
                 if part == 1:
                     worry = thief['operation'](item) // 3
                 else:
@@ -44,9 +44,8 @@ def day(data, part):
                 test_result = worry % thief['test_div'] == 0
                 accomplice = thief[test_result]
                 thieves[accomplice]['items'].append(worry)
-
-                del thief['items'][0]
                 thief['inspections'] += 1
+            thief['items'] = []
 
     inspections = sorted([x['inspections'] for x in thieves])
     monkey_business = inspections[-2] * inspections[-1]
