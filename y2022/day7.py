@@ -57,7 +57,7 @@ def day(data):
     for folder, size in directory_sizes.items():
         if size <= 100_000:
             total += size
-    print(f"Answer for {__name__[1:5]} day {__name__[9:]} part 1: {total}")
+    # print(f"Answer for {__name__[1:5]} day {__name__[9:]} part 1: {total}")
 
     # Part 2: What is the smallest single directory that can be deleted to free up enough space?
     # First figure out how much space is needed.
@@ -77,9 +77,14 @@ def day(data):
             best_diff = delta
             best_folder = folder, size
 
-    print(f"Answer for {__name__[1:5]} day {__name__[9:]} part 2: {best_folder[1]}")
+    # print(f"Answer for {__name__[1:5]} day {__name__[9:]} part 2: {best_folder[1]}")
+
+    return total, best_folder[1]
 
 
 def main():
     data = read_data(__file__)
-    day(data)
+    return day(data)
+
+
+expected_answers = 1077191, 5649896

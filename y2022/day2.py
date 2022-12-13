@@ -40,10 +40,15 @@ def day(data, part):
             score += 6
         # print(f"opp: {opponent}, me: {me}, score {score}")
 
-    print(f"Answer for 2022 day 2 part {part}: {score}")
+    # print(f"Answer for 2022 day 2 part {part}: {score}")
+    return score
 
 
 def main():
     data = read_data(__file__)
-    day(data, part=1)
-    day(data, part=2)
+    answer1 = day(data, part=1)
+    answer2 = day(data, part=2)
+    return answer1, answer2
+
+
+expected_answers = 10941, 13071

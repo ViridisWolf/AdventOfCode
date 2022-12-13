@@ -30,7 +30,8 @@ def part1(data):
         item = get_duplicate(bag)
         total += priority[item]
 
-    print(f"Answer for {__name__[1:5]} day {__name__[9:]} part 1: {total}")
+    # print(f"Answer for {__name__[1:5]} day {__name__[9:]} part 1: {total}")
+    return total
 
 
 def part2(data):
@@ -41,10 +42,14 @@ def part2(data):
         data = data[3:]
         total += priority[item]
 
-    print(f"Answer for {__name__[1:5]} day {__name__[9:]} part 2: {total}")
+    # print(f"Answer for {__name__[1:5]} day {__name__[9:]} part 2: {total}")
+    return total
 
 
 def main():
     data = read_data(__file__)
-    part1(data)
-    part2(data)
+    answer1 = part1(data)
+    answer2 = part2(data)
+    return answer1, answer2
+
+expected_answers = 7793, 2499

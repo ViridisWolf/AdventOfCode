@@ -63,10 +63,14 @@ def day9(data):
             else:
                 raise AssertionError
 
-    print(f"Answer for {__name__[1:5]} day {__name__[9:]} part 1: {len(rope.visited_part1)}")
-    print(f"Answer for {__name__[1:5]} day {__name__[9:]} part 2: {len(rope.visited_part2)}")
+    # print(f"Answer for {__name__[1:5]} day {__name__[9:]} part 1: {len(rope.visited_part1)}")
+    # print(f"Answer for {__name__[1:5]} day {__name__[9:]} part 2: {len(rope.visited_part2)}")
+    return len(rope.visited_part1), len(rope.visited_part2)
 
 
 def main():
     data = read_data(__file__)
-    day9(data)
+    return day9(data)
+
+
+expected_answers = 5902, 2445

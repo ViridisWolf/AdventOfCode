@@ -49,10 +49,13 @@ def day(data, part):
 
     inspections = sorted([x['inspections'] for x in thieves])
     monkey_business = inspections[-2] * inspections[-1]
-    print(f"Answer for {__name__[1:5]} day {__name__[9:]} part {part}: {monkey_business}")
+    # print(f"Answer for {__name__[1:5]} day {__name__[9:]} part {part}: {monkey_business}")
+    return monkey_business
 
 
 def main():
     data = read_data(__file__)
-    day(data, part=1)
-    day(data, part=2)
+    return day(data, part=1), day(data, part=2)
+
+
+expected_answers = 118674, 32333418600

@@ -13,7 +13,7 @@ class ComDev:
 
         # CPU variables.
         self.x = 1
-        self.ip = 1
+        self.ip = 0
         self.code = code
         self.current_instruction = code[0]
         self.remaining_cycles = self.opcode_times[self.current_instruction[0]] - 1
@@ -59,9 +59,13 @@ class ComDev:
             else:
                 raise AssertionError
 
-            self.current_instruction = self.code[self.ip]
-            self.remaining_cycles = self.opcode_times[self.current_instruction[0]] - 1
             self.ip += 1
+            if self.ip < len(self.code):
+                self.current_instruction = self.code[self.ip]
+                self.remaining_cycles = self.opcode_times[self.current_instruction[0]] - 1
+            else:
+                assert self.ip == len(self.code)
+                # Don't fetch an instruction on the last iteration.
 
     def get_signal_strength(self):
         return self.cycle * self.x
@@ -79,10 +83,19 @@ def day(data):
             # print(f"cycle {device.cycle} signal: {device.get_signal_strength()}")
             total_signal += device.get_signal_strength()
 
-    print(f"Answer for {__name__[1:5]} day {__name__[9:]} part 1: {total_signal}")
-    print(f"Answer for {__name__[1:5]} day {__name__[9:]} part 2:\n{device.get_screen()}")
+    # print(f"Answer for {__name__[1:5]} day {__name__[9:]} part 1: {total_signal}")
+    # print(f"Answer for {__name__[1:5]} day {__name__[9:]} part 2:\n{device.get_screen()}")
+    return total_signal, device.get_screen()
 
 
 def main():
     data = read_data(__file__)
-    day(data)
+    return day(data)
+
+
+expected_answers = 12880, ("████  ██    ██  ██  ███    ██ ███  ████ \n"
+                           "█    █  █    █ █  █ █  █    █ █  █ █    \n"
+                           "███  █       █ █  █ █  █    █ █  █ ███  \n"
+                           "█    █       █ ████ ███     █ ███  █    \n"
+                           "█    █  █ █  █ █  █ █    █  █ █ █  █    \n"
+                           "█     ██   ██  █  █ █     ██  █  █ ████ ")

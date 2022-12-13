@@ -12,7 +12,8 @@ def day_v1(data, part):
     for index in range(required_len, len(line)):
         if len(set(line[index-required_len:index])) == required_len:
             break
-    print(f"Answer for {__name__[1:5]} day {__name__[9:]} part {part}: {index}")
+    # print(f"Answer for {__name__[1:5]} day {__name__[9:]} part {part}: {index}")
+    return index
 
 
 def day_v4(data, part):
@@ -29,10 +30,15 @@ def day_v4(data, part):
         else:
             # No char had multiple counts.
             break
-    print(f"Answer for {__name__[1:5]} day {__name__[9:]} part {part}: {index}")
+    # print(f"Answer for {__name__[1:5]} day {__name__[9:]} part {part}: {index}")
+    return index
 
 
 def main():
     data = read_data(__file__)
-    day_v4(data, 1)
-    day_v4(data, 2)
+    answer1 = day_v4(data, 1)
+    answer2 = day_v4(data, 2)
+    return answer1, answer2
+
+
+expected_answers = 1282, 3513

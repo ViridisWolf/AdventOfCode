@@ -14,10 +14,14 @@ def day(lines):
         current += int(line)
 
     elves.sort()
-    print(f"Answer for 2022 day 1 part 1: {elves[-1]}")
-    print(f"Answer for 2022 day 1 part 2: {sum(elves[-3:])}")
+    # print(f"Answer for 2022 day 1 part 1: {elves[-1]}")
+    # print(f"Answer for 2022 day 1 part 2: {sum(elves[-3:])}")
+    return elves[-1], sum(elves[-3:])
 
 
 def main():
     lines = read_data(__file__)
-    day(lines)
+    return day(lines)
+
+
+expected_answers = 69912, 208180
