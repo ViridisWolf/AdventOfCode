@@ -46,10 +46,14 @@ def day(data):
             # Elf2 starting below/equal the max of the lower elf means a partial overlap.
             partial_overlap += 1
 
-    print(f"Answer for {__name__[1:5]} day {__name__[9:]} part 1: {full_overlap}")
-    print(f"Answer for {__name__[1:5]} day {__name__[9:]} part 2: {full_overlap + partial_overlap}")
+    # print(f"Answer for {__name__[1:5]} day {__name__[9:]} part 1: {full_overlap}")
+    # print(f"Answer for {__name__[1:5]} day {__name__[9:]} part 2: {full_overlap + partial_overlap}")
+    return full_overlap, full_overlap + partial_overlap
 
 
 def main():
     data = read_data(__file__)
-    day(data)
+    return day(data)
+
+
+expected_answers = 556, 876

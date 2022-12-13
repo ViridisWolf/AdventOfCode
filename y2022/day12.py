@@ -158,14 +158,19 @@ def day_v2(data):
     distances = mark_distances(end_location, height_map)
 
     answer1 = distances[start_location]
-    print(f"Answer for {__name__[1:5]} day {__name__[9:]} part 1: {distances[start_location]}")
+    # print(f"Answer for {__name__[1:5]} day {__name__[9:]} part 1: {distances[start_location]}")
 
     best = answer1
     for point in possible_starts:
         best = min(best, distances.get(point, best))
-    print(f"Answer for {__name__[1:5]} day {__name__[9:]} part 2: {best}")
+    # print(f"Answer for {__name__[1:5]} day {__name__[9:]} part 2: {best}")
+
+    return answer1, best
 
 
 def main():
     data = read_data(__file__)
-    day_v2(data)
+    return day_v2(data)
+
+
+expected_answers = 425, 418

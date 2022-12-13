@@ -178,7 +178,7 @@ def day_v2(data):
 
     # Part 1 calculations.
     answer = count_visible(trees, size)
-    print(f"Answer for {__name__[1:5]} day {__name__[9:]} part 1: {answer}")
+    # print(f"Answer for {__name__[1:5]} day {__name__[9:]} part 1: {answer}")
 
     # Part 2 calculations.
     best_score = 0
@@ -187,9 +187,14 @@ def day_v2(data):
             distances = scenic_distances(trees, size, (x, y))
             score = math.prod(distances)
             best_score = max(best_score, score)
-    print(f"Answer for {__name__[1:5]} day {__name__[9:]} part 2: {best_score}")
+    # print(f"Answer for {__name__[1:5]} day {__name__[9:]} part 2: {best_score}")
+
+    return answer, best_score
 
 
 def main():
     data = read_data(__file__)
-    day_v2(data)
+    return day_v2(data)
+
+
+expected_answers = 1693, 422059

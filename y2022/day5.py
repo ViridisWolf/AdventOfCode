@@ -70,7 +70,8 @@ def day_v2(data, part):
         stacks[dest] = crates + stacks[dest]
 
     answer = ''.join([s[0] for s in stacks.values()])
-    print(f"Answer for {__name__[1:5]} day {__name__[9:]} part {part}: {answer}")
+    # print(f"Answer for {__name__[1:5]} day {__name__[9:]} part {part}: {answer}")
+    return answer
 
 
 def day_v3(data, part):
@@ -104,10 +105,15 @@ def day_v3(data, part):
         stacks[dest].extend(crates)
 
     answer = ''.join([s[-1] for s in stacks.values()])
-    print(f"Answer for {__name__[1:5]} day {__name__[9:]} part {part}: {answer}")
+    # print(f"Answer for {__name__[1:5]} day {__name__[9:]} part {part}: {answer}")
+    return answer
 
 
 def main():
     data = read_data(__file__)
-    day_v3(data, 1)
-    day_v3(data, 2)
+    answer1 = day_v3(data, 1)
+    answer2 = day_v3(data, 2)
+    return answer1, answer2
+
+
+expected_answers = "SVFDLGLWV", "DCVTCVPCL"

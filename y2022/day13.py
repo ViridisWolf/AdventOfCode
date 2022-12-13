@@ -64,7 +64,7 @@ def part1(data):
             correct_pairs.append(index)
 
     # Answer is the sum of indexes (1 based) of the pairs that are in the correct order.
-    print(f"Answer for {__name__[1:5]} day {__name__[9:]} part 1: {sum(correct_pairs)}")
+    return sum(correct_pairs)
 
 
 def part2(data):
@@ -81,10 +81,12 @@ def part2(data):
     divider1_index = packets.index(divider1) + 1
     divider2_index = packets.index(divider2) + 1
     # Answer is the product of the index (1 based) of the two dividers in the sorted packets.
-    print(f"Answer for {__name__[1:5]} day {__name__[9:]} part 2: {divider1_index*divider2_index}")
+    return divider1_index * divider2_index
 
 
 def main():
     data = read_data(__file__)
-    part1(data)
-    part2(data)
+    return part1(data), part2(data)
+
+
+expected_answers = (5340, 21276)
