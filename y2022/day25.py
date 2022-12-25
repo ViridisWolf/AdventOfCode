@@ -32,16 +32,13 @@ def to_snafu(number):
         number = number // 5
         snafu.append(remainder)
 
-    while any(True for x in snafu if x > 2):
-        index = 0
-        while index < len(snafu):
-            number = snafu[index]
-            if number >= 3:
-                snafu[index] -= 5
-                if index+1 == len(snafu):
-                    snafu.append(0)
-                snafu[index + 1] += 1
-            index += 1
+    for index, number in enumerate(snafu):
+        if number >= 3:
+            snafu[index] -= 5
+            if index + 1 == len(snafu):
+                snafu.append(0)
+            snafu[index + 1] += 1
+        index += 1
 
     # Finally, convert the integers to strings.
     for index, number in enumerate(snafu):
