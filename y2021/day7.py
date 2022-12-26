@@ -27,8 +27,14 @@ def day7(part=2):
     else:
         raise AssertionError("'part' must be 1 or 2.")
 
-    print(f"Answer for 2021 day 7 part {part}: {int(best)}")
+    # print(f"Answer for 2021 day 7 part {part}: {int(best)}")
+    return int(best)
+
 
 def main():
-    day7(part=1)
-    day7(part=2)
+    answer1 = day7(part=1)
+    answer2 = day7(part=2)
+    return answer1, answer2
+
+
+expected_answers = 333755, 94017638

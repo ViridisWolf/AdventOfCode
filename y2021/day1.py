@@ -26,10 +26,14 @@ def count_increases(part1=False):
                 increase += 1
             prev_value = value
 
-    print(f"Answer for 2021 day 1 part {1 if part1 else 2}: {increase}")
+    # print(f"Answer for 2021 day 1 part {1 if part1 else 2}: {increase}")
     return increase
 
 
 def main():
-    count_increases(part1=True)
-    count_increases()
+    answer1 = count_increases(part1=True)
+    answer2 = count_increases()
+    return answer1, answer2
+
+
+expected_answers = 1616, 1645

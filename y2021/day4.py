@@ -48,13 +48,20 @@ def day4():
             break
 
     # Scoring.
+    answers = []
     for part, (board, drawn) in enumerate(winners[0:1] + winners[-1:], start=1):
         assert len([x for row in board for x in row]) == len(set([x for row in board for x in row])), "Boards must not repeat numbers."
         unmarked_sum = sum(set([x for row in board for x in row]).difference(drawn))
         score = unmarked_sum * drawn[-1]
-        print(f"Answer for 2021 day 4 part {part}: {score}")
+        # print(f"Answer for 2021 day 4 part {part}: {score}")
+        answers.append(score)
         assert score == (58374 if part == 1 else 11377), f"Calculated score was {score} for part {part}."
+
+    return answers
 
 
 def main():
-    day4()
+    return day4()
+
+
+expected_answers = 58374, 11377

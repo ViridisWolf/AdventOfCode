@@ -54,11 +54,16 @@ def day5(part=1):
 
     # Count the points touched by two or more lines.
     count = sum([1 for x in points.values() if x >= 2])
-    print(f"Answer for 2021 day 5 part {part}: {count}")
+    # print(f"Answer for 2021 day 5 part {part}: {count}")
     assert part != 1 or count == 5835
     assert part != 2 or count == 17013
+    return count
 
 
 def main():
-    day5(part=1)
-    day5(part=2)
+    answer1 = day5(part=1)
+    answer2 = day5(part=2)
+    return answer1, answer2
+
+
+expected_answers = 5835, 17013

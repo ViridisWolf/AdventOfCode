@@ -76,9 +76,13 @@ def day17():
                 break
 
     highest = max([x[2] for x in hits])
-    print(f"Answer for 2021 day 17 part 1:", highest)
-    print(f"Answer for 2021 day 17 part 2:", len(hits))
+    # print(f"Answer for 2021 day 17 part 1:", highest)
+    # print(f"Answer for 2021 day 17 part 2:", len(hits))
+    return highest, len(hits)
 
 
 def main():
-    day17()
+    return day17()
+
+
+expected_answers = 13041, 1031

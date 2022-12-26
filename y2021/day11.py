@@ -86,17 +86,22 @@ def day11(part):
         # Check for part 2 end condition.
         if part == 2 and (flashes - old_flashes) == sum([1 for r in field for c in r]):
             # All flashed on same step.
-            print(f"Answer for 2021 day 11 part 2: {step+1}")
-            return
+            # print(f"Answer for 2021 day 11 part 2: {step+1}")
+            return step + 1
 
         # Display the field like the example does.
         if DEBUG:
             print(f"\nAfter {step+1} steps:")
             display_field(field)
 
-    print(f"Answer for 2021 day 11 part 1: {flashes}")
+    # print(f"Answer for 2021 day 11 part 1: {flashes}")
+    return flashes
 
 
 def main():
-    day11(part=1)
-    day11(part=2)
+    answer1 = day11(part=1)
+    answer2 = day11(part=2)
+    return answer1, answer2
+
+
+expected_answers = 1741, 440

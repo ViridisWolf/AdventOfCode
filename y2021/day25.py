@@ -93,7 +93,12 @@ def part1():
 
     # print(f"Steps taken to stop moving: {steps}")
     print(f"Answer for 2021 day 25 part 1: {steps}")
+    return steps
 
 
 def main():
-    part1()
+    answer1 = part1()
+    return answer1,
+
+
+expected_answers = 489,

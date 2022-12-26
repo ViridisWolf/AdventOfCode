@@ -148,9 +148,14 @@ def part2(max_size=None, part=2):
         on += delta
         debug(f"... which gave a delta of {delta} for a total of {on} cubes on.")
 
-    print(f"Answer for 2021 day 22 part {part}: {on}")
+    # print(f"Answer for 2021 day 22 part {part}: {on}")
+    return on
 
 
 def main():
-    part2(max_size=50, part=1)
-    part2()
+    answer1 = part2(max_size=50, part=1)
+    answer2 = part2()
+    return answer1, answer2
+
+
+expected_answers = 607573, 1267133912086024

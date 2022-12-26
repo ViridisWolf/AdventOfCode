@@ -171,13 +171,17 @@ def main():
     for scanner in scanners:
         for point in scanner.points:
             beacon_maps.add(point)
-    print(f"Answer for 2021 day 19 part 1: {len(beacon_maps)}")
+    # print(f"Answer for 2021 day 19 part 1: {len(beacon_maps)}")
+    answer1 = len(beacon_maps)
 
     dist = 0
     for index, s1 in enumerate(scanners):
         for s2 in scanners[index:]:
             dist = max(dist, manhattan_distance(s1, s2))
-    print(f"Answer for 2021 day 19 part 2:", dist)
+    # print(f"Answer for 2021 day 19 part 2:", dist)
+    answer2 = dist
+
+    return answer1, answer2
 
 
 def tests():
@@ -205,3 +209,6 @@ def tests():
     s1 = Scanner(1, {(1, 1, 1), (2, 2, 2), (3, 3, 3), (3, 1, 2), (-6, -4, -5), (0, 7, -8)})
     assert match_and_update(s1, [s0], required_points=6)
     assert s1.position == (0, 0, 0)
+
+
+expected_answers = 315, 13192

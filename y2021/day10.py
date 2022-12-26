@@ -41,11 +41,18 @@ def day10():
     score = 0
     for char in corrupted_characters:
         score += corrupted_points_table[char]
-    print(f"Answer for 2021 day 10 part 1: {score}")
+    # print(f"Answer for 2021 day 10 part 1: {score}")
+    answer1 = score
 
     score = statistics.median(missing_scores)
-    print(f"Answer for 2021 day 10 part 2: {score}")
+    # print(f"Answer for 2021 day 10 part 2: {score}")
+    answer2 = score
+
+    return answer1, answer2
 
 
 def main():
-    day10()
+    return day10()
+
+
+expected_answers = 358737, 4329504793

@@ -52,6 +52,7 @@ def day13(silent=False):
                     self.mark(dot.x, y - (dot.y - y))
 
         def print(self, glyph='█'):
+            text = ""
             rows = []
             for dot in self.points:
                 # Construct the ouput table.
@@ -64,10 +65,8 @@ def day13(silent=False):
                     row += [' ']*(dot.x + 1 - len(row))
                 row[dot.x] = glyph
 
-            for row in rows:
-                if row is None:
-                    row = []
-                print(''.join(row))
+            rows = ['' if row is None else ''.join(row) for row in rows]
+            return '\n'.join(rows)
 
     # Done defining things.  Start doing.
     folds = []
@@ -90,7 +89,8 @@ def day13(silent=False):
 
     for count, fold in enumerate(folds):
         if count == 1:
-            print(f"Answer for 2021 day 13 part 1: {paper.count()}")
+            # print(f"Answer for 2021 day 13 part 1: {paper.count()}")
+            answer1 = paper.count()
         # print(f"{paper.count()} dots before fold {fold}", end='')
         x, y = None, None
         assert fold[0] in ['x', 'y']
@@ -101,8 +101,20 @@ def day13(silent=False):
         paper.fold(x, y)
         # print(f" and {paper.count()} after.")
     if not silent:
-        paper.print()
+        print(paper.print())
+
+    answer2 = paper.print()
+    return answer1, answer2
 
 
 def main():
-    day13(silent=True)
+    return day13(silent=True)
+
+
+expected_answers = (710,
+                    "████ ███  █     ██  ███  █  █ █    ███\n"
+                    "█    █  █ █    █  █ █  █ █  █ █    █  █\n"
+                    "███  █  █ █    █    █  █ █  █ █    █  █\n"
+                    "█    ███  █    █ ██ ███  █  █ █    ███\n"
+                    "█    █    █    █  █ █ █  █  █ █    █ █\n"
+                    "████ █    ████  ███ █  █  ██  ████ █  █")
