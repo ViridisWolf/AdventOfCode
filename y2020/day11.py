@@ -105,7 +105,7 @@ def day(lines):
     seating.run_to_end()
     # print("Final seating layout:")
     # seating.print_board()
-    print(f"Answer for 2020 day 11 part 2: {seating.get_occupied_count()}")
+    # print(f"Answer for 2020 day 11 part 2: {seating.get_occupied_count()}")
     answer2 = seating.get_occupied_count()
 
     return answer1, answer2
