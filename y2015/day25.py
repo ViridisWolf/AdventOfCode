@@ -16,8 +16,12 @@ def part1():
         number = (number * 252533) % 33554393
         # print(number)
 
-    print(f"Answer for 2015 day 25 part 1: {number}")
+    # print(f"Answer for 2015 day 25 part 1: {number}")
+    return number
 
 
 def main():
-    part1()
+    return part1(),
+
+
+expected_answers = 2650453,

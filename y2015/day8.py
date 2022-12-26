@@ -17,6 +17,7 @@ def part1_v1(data):
         literal_count += len(line)
 
     print(f"Answer for {__name__[1:5]} day {__name__[9:]} part 1: {code_count - literal_count}")
+    return code_count - literal_count
 
 
 def part1_v3(data):
@@ -32,7 +33,8 @@ def part1_v3(data):
         line = line.replace(r'\\', '?')
         literal_count += len(line) - line.count(r'\"') - (line.count(r'\x')*3) - 2
 
-    print(f"Answer for {__name__[1:5]} day {__name__[9:]} part 1: {code_count - literal_count}")
+    # print(f"Answer for {__name__[1:5]} day {__name__[9:]} part 1: {code_count - literal_count}")
+    return code_count - literal_count
 
 
 def part2(data):
@@ -43,10 +45,15 @@ def part2(data):
         code_count += len(line)
         encoded_count += len(line) + line.count('"') + line.count("\\") + 2
 
-    print(f"Answer for {__name__[1:5]} day {__name__[9:]} part 2: {encoded_count - code_count}")
+    # print(f"Answer for {__name__[1:5]} day {__name__[9:]} part 2: {encoded_count - code_count}")
+    return encoded_count - code_count
 
 
 def main():
     data = read_data(__file__)
-    part1_v3(data)
-    part2(data)
+    answer1 = part1_v3(data)
+    answer2 = part2(data)
+    return answer1, answer2
+
+
+expected_answers = 1333, 2046

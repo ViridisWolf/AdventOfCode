@@ -20,9 +20,14 @@ def day4(part=1):
             break
         number += 1
 
-    print(f"Answer for 2015 day 4 part {part}: {number}")
+    # print(f"Answer for 2015 day 4 part {part}: {number}")
+    return number
 
 
 def main():
-    day4(part=1)
-    day4(part=2)
+    answer1 = day4(part=1)
+    answer2 = day4(part=2)
+    return answer1, answer2
+
+
+expected_answers = 346386, 9958218

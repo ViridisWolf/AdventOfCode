@@ -28,7 +28,8 @@ def part1():
             # Don't need to check for 'bad' because we don't get here if it was bad.
             nice += 1
 
-    print(f"Answer for 2015 day 5 part 1: {nice}")
+    # print(f"Answer for 2015 day 5 part 1: {nice}")
+    return nice
 
 
 def part2():
@@ -53,9 +54,14 @@ def part2():
         if repeated and pair:
             nice += 1
 
-    print(f"Answer for 2015 day 5 part 2: {nice}")
+    # print(f"Answer for 2015 day 5 part 2: {nice}")
+    return nice
 
 
 def main():
-    part1()
-    part2()
+    answer1 = part1()
+    answer2 = part2()
+    return answer1, answer2
+
+
+expected_answers = 236, 51
