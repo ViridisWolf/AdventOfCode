@@ -90,8 +90,15 @@ def main():
 
     for _ in range(2):
         img = img.get_enhanced_image(algorithm)
-    print(f"Answer for 2021 day 20 part 1:", img.count_lit_pixels())
+    # print(f"Answer for 2021 day 20 part 1:", img.count_lit_pixels())
+    answer1 = img.count_lit_pixels()
 
     for _ in range(48):
         img = img.get_enhanced_image(algorithm)
-    print(f"Answer for 2021 day 20 part 2:", img.count_lit_pixels())
+    # print(f"Answer for 2021 day 20 part 2:", img.count_lit_pixels())
+    answer2 = img.count_lit_pixels()
+
+    return answer1, answer2
+
+
+expected_answers = 5486, 20210

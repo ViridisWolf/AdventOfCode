@@ -140,7 +140,8 @@ def day18():
         snail = add(snail, fish)
         snail = reduce(snail)
 
-    print(f"Answer for 2021 day 18 part 1: {magnitude(snail)}")
+    # print(f"Answer for 2021 day 18 part 1: {magnitude(snail)}")
+    answer1 = magnitude(snail)
 
     best = 0
     for snail in sea:
@@ -148,8 +149,14 @@ def day18():
             snailfish = reduce(add(snail, fish))
             mag = magnitude(snailfish)
             best = max(best, mag)
-    print(f"Answer for 2021 day 18 part 2: {best}")
+    # print(f"Answer for 2021 day 18 part 2: {best}")
+    answer2 = best
+
+    return answer1, answer2
 
 
 def main():
-    day18()
+    return day18()
+
+
+expected_answers = 3734, 4837

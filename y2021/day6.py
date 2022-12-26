@@ -33,9 +33,14 @@ def day6(part=2):
         fish_counts_by_cycle = new_fish_counts
 
     total = sum(fish_counts_by_cycle.values())
-    print(f"Answer for 2021 day 6 part {part}: {total}")
+    # print(f"Answer for 2021 day 6 part {part}: {total}")
+    return total
 
 
 def main():
-    day6(part=1)
-    day6(part=2)
+    answer1 = day6(part=1)
+    answer2 = day6(part=2)
+    return answer1, answer2
+
+
+expected_answers = 355386, 1613415325809

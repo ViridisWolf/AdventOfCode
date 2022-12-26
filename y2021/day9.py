@@ -77,7 +77,8 @@ def day9():
                 minimums.append(((x, y), height))
 
     risk_level = sum((m[1]+1) for m in minimums)
-    print("Answer for 2021 day 9 part 1:", risk_level)
+    # print("Answer for 2021 day 9 part 1:", risk_level)
+    answer1 = risk_level
 
     basin_sizes = []
     for m in minimums:
@@ -88,8 +89,14 @@ def day9():
     mult = 1
     for size in sorted(basin_sizes)[-3:]:
         mult *= size
-    print("Answer for 2021 day 9 part 2:", mult)
+    # print("Answer for 2021 day 9 part 2:", mult)
+    answer2 = mult
+
+    return answer1, answer2
 
 
 def main():
-    day9()
+    return day9()
+
+
+expected_answers = 532, 1110780

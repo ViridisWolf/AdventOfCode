@@ -84,9 +84,13 @@ def day8():
 
     part1_count = sum([v for k, v in output_counts.items() if k in [1, 4, 7, 8]])
 
-    print(f"Answer for 2021 day 8 part 1: {part1_count}")
-    print(f"Answer for 2021 day 8 part 2: {sum_total}")
+    # print(f"Answer for 2021 day 8 part 1: {part1_count}")
+    # print(f"Answer for 2021 day 8 part 2: {sum_total}")
+    return part1_count, sum_total
 
 
 def main():
-    day8()
+    return day8()
+
+
+expected_answers = 365, 975706

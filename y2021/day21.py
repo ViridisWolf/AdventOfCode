@@ -38,7 +38,8 @@ def part1():
                 break
 
     losing_score = min([p['score'] for p in players.values()])
-    print(f"Answer for 2021 day 21 part 1: {losing_score * rolls}")
+    # print(f"Answer for 2021 day 21 part 1: {losing_score * rolls}")
+    return losing_score * rolls
 
 
 def part2():
@@ -109,9 +110,14 @@ def part2():
     uni_wins = 0
     for roll in p1wins:
         uni_wins += universe_wins_at(p1wins, p2wins, roll)
-    print(f"Answer for 2021 day 21 part 2: {uni_wins}")
+    # print(f"Answer for 2021 day 21 part 2: {uni_wins}")
+    return uni_wins
 
 
 def main():
-    part1()
-    part2()
+    answer1 = part1()
+    answer2 = part2()
+    return answer1, answer2
+
+
+expected_answers = 926610, 146854918035875

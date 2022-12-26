@@ -38,11 +38,14 @@ def day14(loops, part):
     # print("Element counts:", element_counts)
     counts = sorted(element_counts.values())
 
-    print(f"Answer for 2021 day 14 part {part}: {counts[-1] - counts[0]}")
-
-    return counts
+    # print(f"Answer for 2021 day 14 part {part}: {counts[-1] - counts[0]}")
+    return counts[-1] - counts[0]
 
 
 def main():
-    day14(10, 1)
-    day14(40, 2)
+    answer1 = day14(10, 1)
+    answer2 = day14(40, 2)
+    return answer1, answer2
+
+
+expected_answers = 2360, 2967977072188

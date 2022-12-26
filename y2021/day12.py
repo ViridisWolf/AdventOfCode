@@ -81,9 +81,14 @@ def day12(part):
     paths = get_paths('start', caves, end='end', revisit_small_cave=True if part == 2 else False)
     # paths = [[c.name for c in path] for path in paths]
     # pprint(sorted(paths))
-    print(f"Answer for 2021 day 12 part {part}: {len(paths)}")
+    # print(f"Answer for 2021 day 12 part {part}: {len(paths)}")
+    return len(paths)
 
 
 def main():
-    day12(part=1)
-    day12(part=2)
+    answer1 = day12(part=1)
+    answer2 = day12(part=2)
+    return answer1, answer2
+
+
+expected_answers = 3000, 74222
