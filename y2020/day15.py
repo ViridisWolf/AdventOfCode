@@ -22,10 +22,15 @@ def day(data, part):
             spoken_number = turn - 1 - spoken_turn
         # print(f"Turn {turn} - spoken: {spoken_number}")
 
-    print(f"Answer for {__name__[1:5]} day {__name__[9:]} part {part}: {spoken_number}")
+    # print(f"Answer for {__name__[1:5]} day {__name__[9:]} part {part}: {spoken_number}")
+    return spoken_number
 
 
 def main():
     data = read_data(__file__)
-    day(data, 1)
-    day(data, 2)
+    answer1 = day(data, 1)
+    answer2 = day(data, 2)
+    return answer1, answer2
+
+
+expected_answers = 610, 1407

@@ -96,7 +96,8 @@ def day(lines):
     seating.run_to_end()
     # print("Final seating layout:")
     # seating.print_board()
-    print(f"Answer for 2020 day 11 part 1: {seating.get_occupied_count()}")
+    # print(f"Answer for 2020 day 11 part 1: {seating.get_occupied_count()}")
+    answer1 = seating.get_occupied_count()
 
     seating = GameOfLife(lines, too_crowded=5, sight=True)
     # print("Initial seating layout:")
@@ -105,8 +106,14 @@ def day(lines):
     # print("Final seating layout:")
     # seating.print_board()
     print(f"Answer for 2020 day 11 part 2: {seating.get_occupied_count()}")
+    answer2 = seating.get_occupied_count()
+
+    return answer1, answer2
 
 
 def main():
     lines = read_data(__file__)
-    day(lines)
+    return day(lines)
+
+
+expected_answers = 2222, 2032

@@ -23,7 +23,8 @@ def part1(lines):
                     valid_passports.append(current)
             current = {}
 
-    print(f"Answer for 2020 day 4 part 1: {len(valid_passports)}")
+    # print(f"Answer for 2020 day 4 part 1: {len(valid_passports)}")
+    return len(valid_passports)
 
 
 def part2(lines):
@@ -91,7 +92,8 @@ def part2(lines):
                 valid_passports.append(current)
             current = {}
 
-    print(f"Answer for 2020 day 4 part 2: {len(valid_passports)}")
+    # print(f"Answer for 2020 day 4 part 2: {len(valid_passports)}")
+    return len(valid_passports)
 
 
 def main():
@@ -104,5 +106,9 @@ def main():
             tmp_lines.append(line)
     lines = tmp_lines
 
-    part1(lines)
-    part2(lines)
+    answer1 = part1(lines)
+    answer2 = part2(lines)
+    return answer1, answer2
+
+
+expected_answers = 208, 167

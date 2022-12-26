@@ -32,13 +32,17 @@ def day(lines):
         seats[seat] = True
 
     # Part one: find the highest occupied seat ID.
-    print(f"Answer for 2020 day 5 part 1: {highest}")
+    # print(f"Answer for 2020 day 5 part 1: {highest}")
 
     # Part two: find the only unoccupied seat in the middle of the occupied seats.
     your_seat = seats.index(None, lowest, highest)
-    print(f"Answer for 2020 day 5 part 2: {your_seat}")
+    # print(f"Answer for 2020 day 5 part 2: {your_seat}")
+    return highest, your_seat
 
 
 def main():
     lines = read_data(__file__)
-    day(lines)
+    return day(lines)
+
+
+expected_answers = 826, 678

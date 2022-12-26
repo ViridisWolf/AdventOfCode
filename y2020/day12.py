@@ -31,7 +31,8 @@ def part1(data):
                 raise AssertionError
         # print(f"{line} -> {x, y}, {direction}")
 
-    print(f"Answer for 2020 day 12 part 1: {abs(x) + abs(y)}")
+    # print(f"Answer for 2020 day 12 part 1: {abs(x) + abs(y)}")
+    return abs(x) + abs(y)
 
 
 def part2(data):
@@ -64,10 +65,15 @@ def part2(data):
             case _:
                 raise AssertionError
 
-    print(f"Answer for 2020 day 12 part 2: {abs(x) + abs(y)}")
+    # print(f"Answer for 2020 day 12 part 2: {abs(x) + abs(y)}")
+    return abs(x) + abs(y)
 
 
 def main():
     data = read_data(__file__)
-    part1(data)
-    part2(data)
+    answer1 = part1(data)
+    answer2 = part2(data)
+    return answer1, answer2
+
+
+expected_answers = 1482, 48739

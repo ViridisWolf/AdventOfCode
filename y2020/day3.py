@@ -40,7 +40,8 @@ def day(lines):
         x = (x + delta_x) % trees.width
         tree_count += trees.square_is_tree(x, y)
 
-    print(f"Answer for 2020 day 3 part 1: {tree_count}")
+    # print(f"Answer for 2020 day 3 part 1: {tree_count}")
+    answer1 = tree_count
 
     tree_mult = 1
     for delta_x, delta_y in [(1, 1), (3, 1), (5, 1), (7, 1), (1, 2)]:
@@ -51,9 +52,15 @@ def day(lines):
             tree_count += trees.square_is_tree(x, y)
         tree_mult *= tree_count
 
-    print(f"Answer for 2020 day 3 part 2: {tree_mult}")
+    # print(f"Answer for 2020 day 3 part 2: {tree_mult}")
+    answer2 = tree_mult
+
+    return answer1, answer2
 
 
 def main():
     lines = read_data(__file__)
-    day(lines)
+    return day(lines)
+
+
+expected_answers = 184, 2431272960

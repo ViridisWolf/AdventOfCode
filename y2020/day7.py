@@ -134,12 +134,16 @@ def day(lines):
     for bag in bag_types.values():
         if count_bag_color(bag, 'shiny gold') > 0:
             contain_shiny_gold += 1
-    print(f"Answer for 2020 day 7 part 1: {contain_shiny_gold}")
+    # print(f"Answer for 2020 day 7 part 1: {contain_shiny_gold}")
 
     total = count_bag_color(bag_types['shiny gold'], color=None)
-    print(f"Answer for 2020 day 7 part 2: {total}")
+    # print(f"Answer for 2020 day 7 part 2: {total}")
+    return contain_shiny_gold, total
 
 
 def main():
     lines = read_data(__file__)
-    day(lines)
+    return day(lines)
+
+
+expected_answers = 316, 11310
