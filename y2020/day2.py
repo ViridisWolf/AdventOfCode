@@ -22,8 +22,9 @@ def day2(passwords):
         if bool(password[index1] == entry['char']) ^ bool(password[index2] == entry['char']):
             valids_part2 += 1
 
-    print(f"Answer for 2020 day 2 part 1: {valids}")
-    print(f"Answer for 2020 day 2 part 2: {valids_part2}")
+    # print(f"Answer for 2020 day 2 part 1: {valids}")
+    # print(f"Answer for 2020 day 2 part 2: {valids_part2}")
+    return valids, valids_part2
 
 
 def main():
@@ -36,4 +37,7 @@ def main():
                           'char': match.group(3),
                           'password': match.group(4),
                           })
-    day2(passwords)
+    return day2(passwords)
+
+
+expected_answers = 519, 708

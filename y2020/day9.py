@@ -28,7 +28,8 @@ def day(lines):
             invalid_number = line
             break
 
-    print(f"Answer for 2020 day 9 part 1: {invalid_number}")
+    # print(f"Answer for 2020 day 9 part 1: {invalid_number}")
+    answer1 = invalid_number
 
     # Find the contiguous range which sums to the invalid number.
     low = 0
@@ -47,10 +48,15 @@ def day(lines):
     # The problem asks for the largest and smallest numbers from the contiguous range.
     smallest = min(contiguous_range)
     largest = max(contiguous_range)
-    print(f"Answer for 2020 day 9 part 2: {smallest + largest}")
+    answer2 = smallest + largest
+    # print(f"Answer for 2020 day 9 part 2: {smallest + largest}")
+    return answer1, answer2
 
 
 def main():
     lines = read_data(__file__)
     lines = [int(x) for x in lines]
-    day(lines)
+    return day(lines)
+
+
+expected_answers = 31161678, 5453868

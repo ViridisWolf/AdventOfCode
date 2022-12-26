@@ -13,7 +13,8 @@ def part1(adapters):
         deltas[adapter - prev] += 1
         prev = adapter
 
-    print(f"Answer for 2020 day 10 part 1: {deltas[1] * deltas[3]}")
+    # print(f"Answer for 2020 day 10 part 1: {deltas[1] * deltas[3]}")
+    return deltas[1] * deltas[3]
 
 
 def part2(adapters):
@@ -29,7 +30,8 @@ def part2(adapters):
         for prev_jolt in range(jolt-3, jolt):
             ways_to[jolt] += ways_to.get(prev_jolt, 0)
 
-    print(f"Answer for 2020 day 10 part 2: {ways_to.popitem()[1]}")
+    # print(f"Answer for 2020 day 10 part 2: {ways_to.popitem()[1]}")
+    return ways_to.popitem()[1]
 
 
 def main():
@@ -39,5 +41,9 @@ def main():
     # Add the "built-in" adaptor, which is 3 higher than the largest adaptor in the input.
     lines.append(lines[-1] + 3)
 
-    part1(lines)
-    part2(lines)
+    answer1 = part1(lines)
+    answer2 = part2(lines)
+    return answer1, answer2
+
+
+expected_answers = 2368, 1727094849536

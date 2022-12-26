@@ -43,7 +43,8 @@ class Program:
 def part1(code):
     state = Program(code)
     state.run()
-    print(f"Answer for 2020 day 8 part 1: {state.accumulator}")
+    # print(f"Answer for 2020 day 8 part 1: {state.accumulator}")
+    return state.accumulator
 
 
 def part2(code):
@@ -58,7 +59,8 @@ def part2(code):
         state.run()
         if state.terminated:
             break
-    print(f"Answer for 2020 day 8 part 2: {state.accumulator}")
+    # print(f"Answer for 2020 day 8 part 2: {state.accumulator}")
+    return state.accumulator
 
 
 def main():
@@ -68,5 +70,9 @@ def main():
         opcode, arg = line.split(' ')
         code.append((opcode, int(arg)))
 
-    part1(code)
-    part2(code)
+    answer1 = part1(code)
+    answer2 = part2(code)
+    return answer1, answer2
+
+
+expected_answers = 1610, 1703

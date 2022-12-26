@@ -28,7 +28,8 @@ def part1(lines):
         count = bin(group).count('1')
         group_sums.append(count)
 
-    print(f"Answer for 2020 day 6 part 1: {sum(group_sums)}")
+    # print(f"Answer for 2020 day 6 part 1: {sum(group_sums)}")
+    return sum(group_sums)
 
 
 def part2(lines):
@@ -57,10 +58,15 @@ def part2(lines):
         count = bin(group).count('1')
         group_sums.append(count)
 
-    print(f"Answer for 2020 day 6 part 2: {sum(group_sums)}")
+    # print(f"Answer for 2020 day 6 part 2: {sum(group_sums)}")
+    return sum(group_sums)
 
 
 def main():
     lines = read_data(__file__)
-    part1(list(lines))
-    part2(list(lines))
+    answer1 = part1(list(lines))
+    answer2 = part2(list(lines))
+    return answer1, answer2
+
+
+expected_answers = 6534, 3402

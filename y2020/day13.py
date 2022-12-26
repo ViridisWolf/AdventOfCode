@@ -21,7 +21,8 @@ def part1(data):
             best_bus = period
     # print(f"You: {min_depature}, best bus: {best_bus}, wait: {best_wait}")
 
-    print(f"Answer for 2020 day 13 part 1: {best_bus * best_wait}")
+    # print(f"Answer for 2020 day 13 part 1: {best_bus * best_wait}")
+    return best_bus * best_wait
 
 
 def part2(data):
@@ -67,10 +68,15 @@ def part2(data):
                 print(f"Failed!  Timestamp: {timestamp}")
                 return
 
-    print(f"Answer for 2020 day 13 part 2: {timestamp}")
+    # print(f"Answer for 2020 day 13 part 2: {timestamp}")
+    return timestamp
 
 
 def main():
     data = read_data(__file__)
-    part1(data)
-    part2(data)
+    answer1 = part1(data)
+    answer2 = part2(data)
+    return answer1, answer2
+
+
+expected_answers = 3789, 667437230788118

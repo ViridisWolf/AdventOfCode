@@ -15,7 +15,8 @@ def part1(data):
             memory[address] = (int(value) & mask[0]) | mask[1]
 
     answer = sum(memory.values())
-    print(f"Answer for {__name__[1:5]} day {__name__[9:]} part 1: {answer}")
+    # print(f"Answer for {__name__[1:5]} day {__name__[9:]} part 1: {answer}")
+    return answer
 
 
 def part2(data):
@@ -49,10 +50,15 @@ def part2(data):
                 memory[tmp_addr] = int(value)
 
     answer = sum(memory.values())
-    print(f"Answer for {__name__[1:5]} day {__name__[9:]} part 2: {answer}")
+    # print(f"Answer for {__name__[1:5]} day {__name__[9:]} part 2: {answer}")
+    return answer
 
 
 def main():
     data = read_data(__file__)
-    part1(data)
-    part2(data)
+    answer1 = part1(data)
+    answer2 = part2(data)
+    return answer1, answer2
+
+
+expected_answers = 7817357407588, 4335927555692
