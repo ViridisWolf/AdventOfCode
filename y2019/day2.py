@@ -66,7 +66,8 @@ def part1():
     computer.data[2] = 2
     computer.run()
     answer = computer.data[0]
-    print(f"Answer for 2019 day 2 part 1: {answer}")
+    # print(f"Answer for 2019 day 2 part 1: {answer}")
+    return answer
 
 
 def part2():
@@ -87,10 +88,14 @@ def part2():
 
     if output != 19690720:
         raise AssertionError("Did not find the answer!")
-    print(f"Answer for 2019 day 2 part 2: {100*noun + verb}")
+    # print(f"Answer for 2019 day 2 part 2: {100*noun + verb}")
+    return 100*noun + verb
 
 
 def main():
-    part1()
-    part2()
+    answer1 = part1()
+    answer2 = part2()
+    return answer1, answer2
 
+
+expected_answers = 9706670, 2552

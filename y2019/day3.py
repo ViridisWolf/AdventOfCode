@@ -63,9 +63,13 @@ def part2():
     shortest = min(manhattan_distance((0, 0), p) for p in overlaps)
     delay = min(wire_maps[0][k] + wire_maps[1][k] for k in overlaps)
 
-    print(f"Answer for 2019 day 3 part 1: {shortest}")
-    print(f"Answer for 2019 day 3 part 2: {delay}")
+    # print(f"Answer for 2019 day 3 part 1: {shortest}")
+    # print(f"Answer for 2019 day 3 part 2: {delay}")
+    return shortest, delay
 
 
 def main():
-    part2()
+    return part2()
+
+
+expected_answers = 1285, 14228
