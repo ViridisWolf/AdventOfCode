@@ -24,7 +24,8 @@ def part1():
 
             houses[(x, y)] = houses.get((x, y), 0) + 1
 
-    print(f"Answer for 2015 day 3 part 1: {len(houses)}")
+    # print(f"Answer for 2015 day 3 part 1: {len(houses)}")
+    return len(houses)
 
 
 def part2():
@@ -50,9 +51,14 @@ def part2():
             turn ^= 1
             houses[tuple(location[turn])] = houses.get(tuple(location[turn]), 0) + 1
 
-    print(f"Answer for 2015 day 3 part 2: {len(houses)}")
+    # print(f"Answer for 2015 day 3 part 2: {len(houses)}")
+    return len(houses)
 
 
 def main():
-    part1()
-    part2()
+    answer1 = part1()
+    answer2 = part2()
+    return answer1, answer2
+
+
+expected_answers = 2081, 2341

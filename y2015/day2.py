@@ -18,9 +18,13 @@ def day2():
         vol = h*w*l
         ribbon += vol + sum(sides_len[0:2])
 
-    print(f"Answer for 2015 day 2 part 1: {paper}")
-    print(f"Answer for 2015 day 2 part 2: {ribbon}")
+    # print(f"Answer for 2015 day 2 part 1: {paper}")
+    # print(f"Answer for 2015 day 2 part 2: {ribbon}")
+    return paper, ribbon
 
 
 def main():
-    day2()
+    return day2()
+
+
+expected_answers = 1586300, 3737498
