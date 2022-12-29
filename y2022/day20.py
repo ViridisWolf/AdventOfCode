@@ -3,52 +3,8 @@
 from AdventOfCode import read_data
 
 
-def get_nth_after(data, n, after):
-    index = data.index(after)
-    return data[(index + n) % len(data)]
-
-
-def part1(data):
-    # Second element of the 2-tuple indicates if this element has been processed.
-    data = [(int(x), False) for x in data]
-
-    # print(data)
-    while any(p is False for (_,p) in data):
-        for index, line in enumerate(data):
-            datum, processed = line
-            if processed:
-                continue
-            break
-
-        # print(f"Processing index {index}")
-
-        new_index = index + datum
-        sign = 1 if new_index >= 0 else -1
-        new_index = sign * (abs(new_index) % (len(data) - 1))
-        del data[index]
-        data.insert(new_index, (datum, True))
-
-        # if index + datum < 0:
-        #     new_index = (index + datum - 1) % len(data)
-        # else:
-        #     new_index = (index + datum) % len(data)
-        # del mixed_data[index]
-        # mixed_data.insert(new_index, (datum, True))
-
-        # print(f"Moving {datum} to index {new_index}.")
-        # print(data)
-        # print()
-
-    data = [x for x, y in data]
-
-    coordinates = get_nth_after(data, 1000, 0)
-    coordinates += get_nth_after(data, 2000, 0)
-    coordinates += get_nth_after(data, 3000, 0)
-
-    return coordinates
-
-
-def part2(data, part):
+def day(data, part):
+    """ Move elements forward or backwards in the data according to their integer value. """
     if part == 2:
         data = [int(x) * 811589153 for x in data]
     data = [(int(x), index) for index, x in enumerate(data)]
@@ -59,27 +15,24 @@ def part2(data, part):
             index = data.index((datum, orig_index))
 
             new_index = index + datum
-            sign = 1 if new_index >= 0 else -1
-            new_index = sign * (abs(new_index) % (len(data) - 1))
+            new_index = new_index % (len(data) - 1)
             del data[index]
             data.insert(new_index, (datum, orig_index))
 
-            # print(f"Moving {datum} to index {new_index}.")
-            # print(data)
-            # print()
-
-    data = [x for x, y in data]
-    coordinates = get_nth_after(data, 1000, 0)
-    coordinates += get_nth_after(data, 2000, 0)
-    coordinates += get_nth_after(data, 3000, 0)
+    # The answer is the sum of three elements at specific locations within the data.
+    data = [x for x, _ in data]
+    index = data.index(0)
+    coordinates = data[(index + 1000) % len(data)]
+    coordinates += data[(index + 2000) % len(data)]
+    coordinates += data[(index + 3000) % len(data)]
 
     return coordinates
 
 
 def main():
     data = read_data(__file__)
-    answer1 = part1(data)
-    answer2 = part2(data, 2)
+    answer1 = day(data, 1)
+    answer2 = day(data, 2)
     return answer1, answer2
 
 
