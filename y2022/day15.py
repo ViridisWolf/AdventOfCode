@@ -22,7 +22,8 @@ def row_covered(row, sensors, beacons, part=1):
 
     covered_count = 0
     not_covered_x = None
-    skip = None
+    x_limit = 0, 4000000
+    skip = x_limit[1]
 
     covered_regions = []
     for sensor in sensors.values():
@@ -41,15 +42,12 @@ def row_covered(row, sensors, beacons, part=1):
     covered_regions.sort()
     # print(covered_regions)
     # TODO: Split this function into different parts.
-    # TODO: Figure out how to calculate a skip value.
+    # TODO: Improve the skip value.
 
     prev = None
-    for region in covered_regions[0:]:
-        x2_min, x2_max = region
-
+    for x2_min, x2_max in covered_regions:
         if part == 2:
             # Part 2 checks.
-            x_limit = 0, 4000000
             if x2_max < x_limit[0]:
                 continue
             if x2_min > x_limit[1]:
@@ -69,16 +67,26 @@ def row_covered(row, sensors, beacons, part=1):
         elif prev >= x2_min:
             # Subtract off any overlap.
             # print("Removing", prev - x2_min + 1, "overlap")
+            skip = min(skip, prev - x2_min)
             covered_count -= prev - x2_min + 1
         elif prev == x2_min - 2:
             # Gap of one.  This should be the missing point.
             not_covered_x = x2_min - 1
+            skip = 0
+        else:
+            skip = 0
         prev = x2_max
 
     if part == 1:
         # Remove any beacons in the line, as we only want the points which can't have beacons.
         covered_count -= len([b for b in beacons if b[1] == row])
         # print("Removing count of overlapping beacons:", len([b for b in beacons if b[1] == row]))
+
+    skip = min(skip, x_limit[0] - covered_regions[0][0])
+    skip = min(skip, max(r[1] for r in covered_regions) - x_limit[1])
+    skip = max(skip, 0)
+    # The divide by 2 is because a region overlap may shrink at up to 2 units per row.
+    skip = skip // 2
 
     return covered_count, not_covered_x, skip
 
@@ -118,14 +126,17 @@ def day(data):
     answer1, _, _ = row_covered(y, sensors, beacons, part=1)
 
     # Part 2.
-    for row in range(0, 4000000+1):
-        _, not_covered_x, _ = row_covered(row, sensors, beacons, part=2)
+    row = 0
+    while 0 <= row <= 4000000:
+        _, not_covered_x, skip = row_covered(row, sensors, beacons, part=2)
         if not_covered_x is not None:
             # This must be the empty spot.
             answer2 = not_covered_x*4000000 + row
             break
+        # print(f"After row {row}, skipping ahead by {skip}")
+        row += 1 + skip
     else:
-        raise AssertionError
+        raise AssertionError("Unable to find the answer!")
 
     return answer1, answer2
 
