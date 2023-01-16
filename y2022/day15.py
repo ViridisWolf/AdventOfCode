@@ -45,37 +45,37 @@ def row_covered(row, sensors, beacons, part=1):
     # TODO: Improve the skip value.
 
     prev = None
-    for x2_min, x2_max in covered_regions:
+    for x_min, x_max in covered_regions:
         if part == 2:
             # Part 2 checks.
-            if x2_max < x_limit[0]:
+            if x_max < x_limit[0]:
                 continue
-            if x2_min > x_limit[1]:
+            if x_min > x_limit[1]:
                 continue
-            if x2_min < x_limit[0]:
-                x2_min = x_limit[0]
-            if x2_max > x_limit[1]:
-                x2_max = x_limit[1]
+            if x_min < x_limit[0]:
+                x_min = x_limit[0]
+            if x_max > x_limit[1]:
+                x_max = x_limit[1]
 
-        if prev is not None and x2_max < prev:
+        if prev is not None and x_max < prev:
             # Total overlap.  Skip this region.
             continue
         # print("Adding", x2_max - x2_min + 1)
-        covered_count += x2_max - x2_min + 1
+        covered_count += x_max - x_min + 1
         if prev is None:
             pass
-        elif prev >= x2_min:
+        elif prev >= x_min:
             # Subtract off any overlap.
             # print("Removing", prev - x2_min + 1, "overlap")
-            skip = min(skip, prev - x2_min)
-            covered_count -= prev - x2_min + 1
-        elif prev == x2_min - 2:
+            skip = min(skip, prev - x_min)
+            covered_count -= prev - x_min + 1
+        elif prev == x_min - 2:
             # Gap of one.  This should be the missing point.
-            not_covered_x = x2_min - 1
+            not_covered_x = x_min - 1
             skip = 0
         else:
             skip = 0
-        prev = x2_max
+        prev = x_max
 
     if part == 1:
         # Remove any beacons in the line, as we only want the points which can't have beacons.
