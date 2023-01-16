@@ -1,7 +1,9 @@
 #!/usr/bin/env python
 
 import argparse
+import concurrent.futures
 import importlib
+import os
 import pathlib
 import time
 
@@ -23,60 +25,68 @@ def read_data(caller, filename=None):
     return lines
 
 
-def run_and_check(module, args):
+def run_and_check(module, year, day, check=False):
     """
-    Runs the main function, prints the results, and checks them against the expected values.
+    Runs the main function, checks the results against the expected values, and returns the results.
 
     :param module: The module which has main().
-    :param args: The args object, which must have correct values in .year and .day.
-    :return: The number of answers which did not match the expected value.
+    :param year: The year to display.
+    :param day: The day to display.
+    :param check: Whether to check the answer.
+    :return: The number of answers which did not match the expected value, and a string of the output.
     """
 
     count_wrong = 0
+    ret_string = ""
 
     results = module.main()
     if results is None:
         # Assume that the module is printing the answers itself.
-        assert not args.check, f"{module.__name__} is not setup for result checking!"
+        assert not check, f"{module.__name__} is not setup for result checking!"
         return count_wrong
 
     for part, answer in enumerate(results, 1):
         if type(answer) is str and '\n' in answer:
             # Make sure that any multiline answer starts on a new line.
-            print(f"Answer for {args.year} day {args.day} part {part}:\n{answer}", end='')
+            ret_string += f"Answer for {year} day {day} part {part}:\n{answer}"
         else:
-            print(f"Answer for {args.year} day {args.day} part {part}: {answer}", end='')
-        if not args.check:
-            print()
+            ret_string += f"Answer for {year} day {day} part {part}: {answer}"
+        if not check:
+            ret_string += '\n'
             continue
 
         expected_answer = module.expected_answers[part - 1]
         if answer == expected_answer:
-            print()
+            ret_string += '\n'
             continue
 
         count_wrong += 1
         if type(expected_answer) is str and '\n' in expected_answer:
             # Make sure that any multiline answer starts on a new line.
-            print(f"\n ^^^ Wrong answer!  Expected:\n{expected_answer}")
+            ret_string += f"\n ^^^ Wrong answer!  Expected:\n{expected_answer}\n"
         else:
-            print(f"  <-- Wrong answer!  Expected {expected_answer}.")
+            ret_string += f"  <-- Wrong answer!  Expected {expected_answer}.\n"
 
-    return count_wrong
+    return count_wrong, ret_string
 
 
-def runtime(module, args=None):
+def runtime(args):
     """
-    Display the runtime of the specified function.
-    :param module: The module with main() to call.
-    :return: Return value from run_and_check().
+    Import and run the puzzle module.  Adds run duration info to the result string.
+
+    :param args: Tuple containing the year, day, and check variables.
+    :return: 2-tuple of the error count and the result string.
     """
+
+    year, day, check = args
+
+    module = get_day_module(year, day)
 
     t0 = time.perf_counter()
-    result = run_and_check(module, args=args)
+    errors, ret_string = run_and_check(module, year, day, check)
     t1 = time.perf_counter()
-    print(f"^^^ ran in {t1-t0:0.3f} seconds ^^^")
-    return result
+    ret_string += f"^^^ ran in {t1-t0:0.3f} seconds ^^^"
+    return errors, ret_string
 
 
 def get_years():
@@ -111,8 +121,32 @@ def get_day_module(year, day):
     return importlib.import_module(f'y{year}.day{day}')
 
 
+def run_all(days, args):
+    """
+    Collect answers for all specified puzzle days, print the answers, and return how many were wrong.
+    This may use multithreading.
+
+    :param days: Sequence of input arguments to the runtime function for each puzzle solution.
+    :param args: The Argument Parser result, which must have .threads.
+    :return: The count of wrong answers.
+    """
+    errors = 0
+
+    with concurrent.futures.ProcessPoolExecutor(max(1, args.threads)) as pool:
+        if args.threads > 1 and len(days) > 1:
+            results = pool.map(runtime, days)
+        else:
+            results = map(runtime, days)
+
+        for answer_errors, answer_string in results:
+            errors += answer_errors
+            print(answer_string)
+
+    return errors
+
+
 def main(year=None, day=None, args=None):
-    wrong_count = 0
+    day_list = []
 
     if year:
         years = [year]
@@ -125,11 +159,10 @@ def main(year=None, day=None, args=None):
             days = [day]
         else:
             days = get_days(year)
-
         for d in days:
-            args.day = d
-            module = get_day_module(year, d)
-            wrong_count += runtime(module, args=args)
+            day_list.append((year, d, args.check))
+
+    wrong_count = run_all(day_list, args)
     return wrong_count
 
 
@@ -138,6 +171,7 @@ if __name__ == '__main__':
     parser.add_argument('--year', type=int, help="The AoC year.")
     parser.add_argument('--day', type=int, help="The AoC day.")
     parser.add_argument('--check', action='store_true', help="Check that each result matches expectation.")
+    parser.add_argument('--threads', type=int, default=os.cpu_count(), help="Number of compute threads to use.")
     args = parser.parse_args()
 
     t0_all = time.perf_counter()
