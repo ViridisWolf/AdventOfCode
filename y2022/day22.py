@@ -95,8 +95,7 @@ class Board:
                 elif y > self.y_limits[x][1]:
                     y = self.y_limits[x][0]
         else:
-            print(f"Transform from {point} in direction {direction}")
-            if point == (0, 105): breakpoint()
+            # print(f"Transform from {point} in direction {direction}")
             side = self.point_to_side[point[0] - direction[0], point[1] - direction[1]]
             transform, facing = self.transforms[side][direction]
             x, y = transform(x + dx, y + dy)
@@ -171,7 +170,7 @@ def day(data, part=1):
                 board.rotate(-90)
             else:
                 board.rotate(90)
-        print(f"After command {command}: facing {board.facing}, location {board.location}")
+        # print(f"After command {command}: facing {board.facing}, location {board.location}")
         command = ""
 
     return board.get_score()
