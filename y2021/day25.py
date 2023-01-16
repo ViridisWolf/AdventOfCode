@@ -92,7 +92,7 @@ def part1():
                 cucumbers = next_cucumbers
 
     # print(f"Steps taken to stop moving: {steps}")
-    print(f"Answer for 2021 day 25 part 1: {steps}")
+    # print(f"Answer for 2021 day 25 part 1: {steps}")
     return steps
 
 

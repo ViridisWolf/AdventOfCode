@@ -138,7 +138,7 @@ def day(data, part):
 
     if part == 1:
         answer = sum(x[1] for x in geodes)
-        print(f"Part 1 done with answer {answer}")
+        # print(f"Part 1 done with answer {answer}")
     else:
         assert part == 2
         answer = math.prod(x[0] for x in geodes)
