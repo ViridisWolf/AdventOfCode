@@ -5,6 +5,7 @@ import concurrent.futures
 import importlib
 import os
 import pathlib
+import sys
 import time
 
 
@@ -145,28 +146,7 @@ def run_all(days, args):
     return errors
 
 
-def main(year=None, day=None, args=None):
-    day_list = []
-
-    if year:
-        years = [year]
-    else:
-        years = get_years()
-
-    for year in years:
-        args.year = year
-        if day:
-            days = [day]
-        else:
-            days = get_days(year)
-        for d in days:
-            day_list.append((year, d, args.check))
-
-    wrong_count = run_all(day_list, args)
-    return wrong_count
-
-
-if __name__ == '__main__':
+def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--year', type=int, help="The AoC year.")
     parser.add_argument('--day', type=int, help="The AoC day.")
@@ -174,8 +154,17 @@ if __name__ == '__main__':
     parser.add_argument('--threads', type=int, default=os.cpu_count(), help="Number of compute threads to use.")
     args = parser.parse_args()
 
+    years = [args.year] if args.year else get_years()
+    puzzle_list = [(y, d, args.check)
+                   for y in years
+                   for d in ([args.day] if args.day else get_days(y))]
+
     t0_all = time.perf_counter()
-    result = main(args.year, args.day, args)
+    result = run_all(puzzle_list, args)
     print(f"Total time: {time.perf_counter() - t0_all:0.3f} seconds.")
     if result:
         print(f"Failure: {result} answers were wrong.")
+
+
+if __name__ == '__main__':
+    sys.exit(main())
