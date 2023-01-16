@@ -49,32 +49,51 @@ class Cave:
         return self.world.get((x, y), AIR)
 
     def sand_fall(self):
-        """ Add a unit of sand to the world map and return True if the sand entered the void. """
+        """ Add some sand to the world map and return True if there is more room for sand to pile up. """
         # Sand origin is 500,0.
         # Sand falls down, then down-left if block, then down-right if block, then stationary if blocked.
         x, y = 500, 0
         into_the_void = False
         blocked = False
+
+        # These variables are used to keep track of where subsequent sand grains are guaranteed to land.
+        last_direction = 0
+        previous_points = 0
+
         while y < self.deepest_rock:
             if self.get_point((x, y+1)) == AIR:
                 y += 1
+                previous_points = 0
+                last_direction = 0
             elif self.get_point((x-1, y+1)) == AIR:
+                if last_direction == -1 and self.get_point((x+1, y+1)) != AIR:
+                    previous_points += 1
+                else:
+                    previous_points = 0
+                    last_direction = -1
                 x, y = x-1, y+1
             elif self.get_point((x+1, y+1)) == AIR:
+                if last_direction == 1:
+                    previous_points += 1
+                else:
+                    previous_points = 0
+                    last_direction = 1
                 x, y = x+1, y+1
             else:
                 # Stopped moving.
                 break
 
-        if y == 0:
-            blocked = True
-        elif y >= self.deepest_rock:
+        if y >= self.deepest_rock:
             into_the_void = True
 
         if not into_the_void:
             # Update the word map.
-            self.world[x, y] = SAND
-            self.sand_grains += 1
+            for y in range(y, y - (previous_points+1), -1):
+                self.world[x, y] = SAND
+                self.sand_grains += 1
+                x = x - last_direction
+            if y == 0:
+                blocked = True
         return not (into_the_void or blocked)
 
 
