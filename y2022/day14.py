@@ -16,6 +16,7 @@ class Cave:
         self.world = {}
         self.sand_grains = 0
         self.part = part
+        self.path = [(500, 0)]
 
         for line in data:
             points = line.split(' -> ')
@@ -49,52 +50,31 @@ class Cave:
         return self.world.get((x, y), AIR)
 
     def sand_fall(self):
-        """ Add some sand to the world map and return True if there is more room for sand to pile up. """
-        # Sand origin is 500,0.
+        """ Add a grain of sand to the world map and return whether there is more room for sand to pile up. """
         # Sand falls down, then down-left if block, then down-right if block, then stationary if blocked.
-        x, y = 500, 0
-        into_the_void = False
-        blocked = False
-
-        # These variables are used to keep track of where subsequent sand grains are guaranteed to land.
-        last_direction = 0
-        previous_points = 0
+        x, y = self.path.pop()
 
         while y < self.deepest_rock:
+            self.path.append((x, y))
             if self.get_point((x, y+1)) == AIR:
                 y += 1
-                previous_points = 0
-                last_direction = 0
             elif self.get_point((x-1, y+1)) == AIR:
-                if last_direction == -1 and self.get_point((x+1, y+1)) != AIR:
-                    previous_points += 1
-                else:
-                    previous_points = 0
-                    last_direction = -1
                 x, y = x-1, y+1
             elif self.get_point((x+1, y+1)) == AIR:
-                if last_direction == 1:
-                    previous_points += 1
-                else:
-                    previous_points = 0
-                    last_direction = 1
                 x, y = x+1, y+1
             else:
                 # Stopped moving.
+                self.path.pop()
                 break
 
         if y >= self.deepest_rock:
-            into_the_void = True
-
-        if not into_the_void:
+            # Fell into the void.
+            return False
+        else:
             # Update the word map.
-            for y in range(y, y - (previous_points+1), -1):
-                self.world[x, y] = SAND
-                self.sand_grains += 1
-                x = x - last_direction
-            if y == 0:
-                blocked = True
-        return not (into_the_void or blocked)
+            self.world[x, y] = SAND
+            self.sand_grains += 1
+            return self.path
 
 
 def day(data, part):
