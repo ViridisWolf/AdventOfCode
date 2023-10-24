@@ -5,8 +5,10 @@ import concurrent.futures
 import importlib
 import os
 import pathlib
+import pdb
 import sys
 import time
+import traceback
 
 
 def read_data(caller, filename=None):
@@ -146,13 +148,26 @@ def run_all(days, args):
     return errors
 
 
+def exception_handler(typ, value, tb):
+    if not sys.stderr.isatty() or not sys.stdout.isatty():
+        # If this isn't a tty-like device, then just fallback to the default hook.
+        sys.__excepthook__(typ, value, tb)
+    else:
+        traceback.print_exception(typ, value, tb)
+        pdb.pm()
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--year', type=int, help="The AoC year.")
     parser.add_argument('--day', type=int, help="The AoC day.")
     parser.add_argument('--check', action='store_true', help="Check that each result matches expectation.")
     parser.add_argument('--threads', type=int, default=os.cpu_count(), help="Number of compute threads to use.")
+    parser.add_argument('--pdb', action='store_true', help="Drop into PDB when there is an unhandled exception.")
     args = parser.parse_args()
+
+    if args.pdb:
+        sys.excepthook = exception_handler
 
     years = [args.year] if args.year else get_years()
     puzzle_list = [(y, d, args.check)
