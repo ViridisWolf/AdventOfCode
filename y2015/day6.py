@@ -4,6 +4,7 @@ from AdventOfCode import read_data
 
 TOGGLE = "toggle"
 
+
 class XmasLights:
     def __init__(self, size):
         self.size = size
