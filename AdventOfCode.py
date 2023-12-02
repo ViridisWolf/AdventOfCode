@@ -77,18 +77,20 @@ def runtime(args):
     """
     Import and run the puzzle module.  Adds run duration info to the result string.
 
-    :param args: Tuple containing the year, day, and check variables.
+    :param args: Tuple containing the year, day, check, and samples variables.
     :return: 2-tuple of the error count and the result string.
     """
 
-    year, day, check = args
+    year, day, check, samples = args
+    assert samples >= 1
 
     module = get_day_module(year, day)
 
     t0 = time.perf_counter()
-    errors, ret_string = run_and_check(module, year, day, check)
+    for _ in range(samples):
+        errors, ret_string = run_and_check(module, year, day, check)
     t1 = time.perf_counter()
-    ret_string += f"^^^ ran in {t1-t0:0.3f} seconds ^^^"
+    ret_string += f"^^^ ran in {(t1-t0)/samples:0.3f} seconds {'average ' if samples > 1 else ''}^^^"
     return errors, ret_string
 
 
@@ -162,6 +164,7 @@ def main():
     parser.add_argument('--year', type=int, help="The AoC year.")
     parser.add_argument('--day', type=int, help="The AoC day.")
     parser.add_argument('--check', action='store_true', help="Check that each result matches expectation.")
+    parser.add_argument('--samples', type=int, default=1, help="Sample count to take for a solution's runtime.")
     parser.add_argument('--threads', type=int, default=os.cpu_count(), help="Number of compute threads to use.")
     parser.add_argument('--pdb', action='store_true', help="Drop into PDB when there is an unhandled exception.")
     args = parser.parse_args()
@@ -170,7 +173,7 @@ def main():
         sys.excepthook = exception_handler
 
     years = [args.year] if args.year else get_years()
-    puzzle_list = [(y, d, args.check)
+    puzzle_list = [(y, d, args.check, args.samples)
                    for y in years
                    for d in ([args.day] if args.day else get_days(y))]
 
