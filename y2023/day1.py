@@ -5,7 +5,7 @@ import re
 from AdventOfCode import read_data
 
 
-def part1(data):
+def part1_orig(data):
     """
     Find the first and last number in each string, concatenate them into one whole number, and return the total for all
     strings.
@@ -17,57 +17,49 @@ def part1(data):
             line = line[1:]
         first_digit = line[0]
         line = line[::-1]
+
         while not line[0].isdigit():
             line = line[1:]
         second_digit = line[0]
+
         number = int(first_digit + second_digit)
         total += number
     return total
 
 
-def part2(data):
+def parts(data, part=2):
     """
-    This is the same part 1, except that the numbers can be in word form.  Also, the letters of those words may overlap.
+    Find the first and last number in each string, concatenate them into one whole number, and return the total for all
+    strings.  The numbers may be spelled out with letters, and the letters may overlap.
+
+    :param data: The puzzle data as a list of strings.
+    :param part: Which part of the puzzle to do.
+    :return: The answer for one part of the puzzle.
     """
 
-    word_map = {
-        '1': '1',
-        '2': '2',
-        '3': '3',
-        '4': '4',
-        '5': '5',
-        '6': '6',
-        '7': '7',
-        '8': '8',
-        '9': '9',
-        'one': '1',
-        'two': '2',
-        'three': '3',
-        'four': '4',
-        'five': '5',
-        'six': '6',
-        'seven': '7',
-        'eight': '8',
-        'nine': '9',
-    }
+    word_map = {'1': 1, '2': 2, '3': 3, '4': 4, '5': 5, '6': 6, '7': 7, '8': 8, '9': 9}
+    if part == 2:
+        word_map |= {'one': 1, 'two': 2, 'three': 3, 'four': 4, 'five': 5, 'six': 6, 'seven': 7, 'eight': 8, 'nine': 9}
+
+    pattern = "|".join(word_map.keys())
+    re_pattern = re.compile(pattern)
+    re_pattern_reversed = re.compile(pattern[::-1])
 
     total = 0
     for line in data:
         # Find the first number in the string using regex.
-        pattern = "|".join(word_map.keys())
-        match = re.search(pattern, line)
+        match = re_pattern.search(line)
         first_digit = match.group(0)
         first_digit = word_map[first_digit]
 
         # To find the last number in the string, reverse both the pattern and the string.
-        pattern = pattern[::-1]
         line = line[::-1]
-        match = re.search(pattern, line)
+        match = re_pattern_reversed.search(line)
         second_digit = match.group(0)
-        # Need to reverse the matched pattern before looking it up in the dictionary.
+        # The matched value needs to be reversed before looking it up in the dictionary.
         second_digit = word_map[second_digit[::-1]]
 
-        number = int(first_digit + second_digit)
+        number = first_digit*10 + second_digit
         total += number
 
     return total
@@ -168,8 +160,8 @@ def part2(data):
 
 def main():
     data = read_data(__file__)
-    answer1 = part1(data)
-    answer2 = part2(data)
+    answer1 = parts(data, part=1)
+    answer2 = parts(data, part=2)
     return answer1, answer2
 
 
