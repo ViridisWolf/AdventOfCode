@@ -39,6 +39,9 @@ def run_and_check(module, year, day, check=False):
     :return: The number of answers which did not match the expected value, and a string of the output.
     """
 
+    red = '\033[0;31m'
+    reset = '\033[0m'
+
     count_wrong = 0
     ret_string = ""
 
@@ -66,9 +69,9 @@ def run_and_check(module, year, day, check=False):
         count_wrong += 1
         if type(expected_answer) is str and '\n' in expected_answer:
             # Make sure that any multiline answer starts on a new line.
-            ret_string += f"\n ^^^ Wrong answer!  Expected:\n{expected_answer}\n"
+            ret_string += f"\n{red} ^^^ Wrong answer!  Expected:\n{expected_answer}{reset}\n"
         else:
-            ret_string += f"  <-- Wrong answer!  Expected {expected_answer}.\n"
+            ret_string += f"{red}  <-- Wrong answer!  Expected {expected_answer}.{reset}\n"
 
     return count_wrong, ret_string
 
