@@ -39,8 +39,8 @@ def run_and_check(module, year, day, check=False):
     :return: The number of answers which did not match the expected value, and a string of the output.
     """
 
-    red = '\033[0;31m'
-    reset = '\033[0m'
+    red = '\x1b[0;31m'
+    reset = '\x1b[0m'
 
     count_wrong = 0
     ret_string = ""
@@ -67,11 +67,13 @@ def run_and_check(module, year, day, check=False):
             continue
 
         count_wrong += 1
+        ret_string += red
         if type(expected_answer) is str and '\n' in expected_answer:
             # Make sure that any multiline answer starts on a new line.
-            ret_string += f"\n{red} ^^^ Wrong answer!  Expected:\n{expected_answer}{reset}\n"
+            ret_string += f"\n ^^^ Wrong answer!  Expected:\n{expected_answer}\n"
         else:
-            ret_string += f"{red}  <-- Wrong answer!  Expected {expected_answer}.{reset}\n"
+            ret_string += f"  <-- Wrong answer!  Expected {expected_answer}.\n"
+        ret_string += reset
 
     return count_wrong, ret_string
 
@@ -84,7 +86,7 @@ def runtime(args):
     :return: 2-tuple of the error count and the result string.
     """
 
-    year, day, check, samples = args
+    year, day, check, samples, precision = args
     assert samples >= 1
 
     module = get_day_module(year, day)
@@ -93,7 +95,7 @@ def runtime(args):
     for _ in range(samples):
         errors, ret_string = run_and_check(module, year, day, check)
     t1 = time.perf_counter()
-    ret_string += f"^^^ ran in {(t1-t0)/samples:0.3f} seconds {'average ' if samples > 1 else ''}^^^"
+    ret_string += f"^^^ ran in {(t1-t0)/samples:0.{precision}f} seconds {'average ' if samples > 1 else ''}^^^"
     return errors, ret_string
 
 
@@ -168,6 +170,7 @@ def main():
     parser.add_argument('--day', type=int, help="The AoC day.")
     parser.add_argument('--check', action='store_true', help="Check that each result matches expectation.")
     parser.add_argument('--samples', type=int, default=1, help="Sample count to take for a solution's runtime.")
+    parser.add_argument('--precision', type=int, default=3, help="Number of decimal places in timestamps.")
     parser.add_argument('--threads', type=int, default=os.cpu_count(), help="Number of compute threads to use.")
     parser.add_argument('--pdb', action='store_true', help="Drop into PDB when there is an unhandled exception.")
     args = parser.parse_args()
@@ -176,13 +179,13 @@ def main():
         sys.excepthook = exception_handler
 
     years = [args.year] if args.year else get_years()
-    puzzle_list = [(y, d, args.check, args.samples)
+    puzzle_list = [(y, d, args.check, args.samples, args.precision)
                    for y in years
                    for d in ([args.day] if args.day else get_days(y))]
 
     t0_all = time.perf_counter()
     result = run_all(puzzle_list, args)
-    print(f"Total time: {time.perf_counter() - t0_all:0.3f} seconds.")
+    print(f"Total time: {time.perf_counter() - t0_all:0.{args.precision}f} seconds.")
     if result:
         print(f"Failure: {result} answers were wrong.")
 
