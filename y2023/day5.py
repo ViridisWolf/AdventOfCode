@@ -14,21 +14,23 @@ def get_destination(value, table):
     """
 
     keys = sorted(table.keys())
-    remaining = float('inf')
     for source_start in keys:
         destination, length = table[source_start]
         delta = value - source_start
         if 0 <= delta <= (length - 1):
             # A range has been hit.
             remaining = length - delta - 1
-            return destination + delta, remaining
+            value = destination + delta
+            break
 
         if value < source_start:
             # We fell into a whole between ranges, and source_start now points at the start of the next range.
             remaining = source_start - value - 1
             break
+    else:
+        # We ran off the end of the map, so 'remaining' is infinite.
+        remaining = float('inf')
 
-    # We ran off the end of the map, so 'remaining' is infinite.
     assert remaining >= 0
     return value, remaining
 
@@ -65,12 +67,14 @@ def day5(data, part=2):
         if not line.strip():
             continue
         if 'map:' in line:
+            # This script assumes that the maps are presented in the correct order.
             map_name = line.split()[0]
             path.append(map_name)
             current_map = {}
             maps[map_name] = current_map
             continue
 
+        # Now 'line' must be a range within a map.
         dest, source, length = [int(x) for x in line.split()]
         current_map[source] = (dest, length)
 
