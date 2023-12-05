@@ -3,94 +3,70 @@
 from AdventOfCode import read_data
 
 
-def get_dest(value, table):
-    for source in table:
-        if value < source:
-            continue
+def get_destination(value, table):
+    """
+    Find the output for the specified input value and single table/map.
+    Also calculate the remaining higher seeds which will hit in the same range.
 
-        delta = value - source
-        dest, length = table[source]
-        if delta <= length:
-            return dest + delta
+    :param value: The input source number.
+    :param table: The map/table, as a dictionary of this form: {source_start: (destination_start, length)}.
+    :return: 2-tuple of the destination output and the remaining seeds which will hit in the same range.
+    """
 
-    return value
-
-
-def part1(data):
-    seeds = data[0].split()[1:]
-
-    assert "seed-to-soil" in data[2]
-    maps = {}
-    current_map = None
-    for line in data[1:]:
-        if not line.strip():
-            continue
-        if 'map:' in line:
-            map_name = line.split()[0]
-            current_map = {}
-            maps[map_name] = current_map
-            continue
-
-        dest, source, length = [int(x) for x in line.split()]
-        current_map[source] = (dest, length)
-
-    best_location = float('inf')
-
-    for seed in seeds:
-        current_value = int(seed)
-        for segment in [
-                        "seed-to-soil",
-                        "soil-to-fertilizer",
-                        "fertilizer-to-water",
-                        "water-to-light",
-                        "light-to-temperature",
-                        "temperature-to-humidity",
-                        "humidity-to-location",
-                        ]:
-            current_map = maps[segment]
-            new_value = get_dest(current_value, current_map)
-            current_value = new_value
-
-        best_location = min(best_location, current_value)
-
-    return best_location
-
-
-def get_dest2(value, table):
-    keys = sorted(list(table.keys()))
+    keys = sorted(table.keys())
     remaining = float('inf')
-    for source in keys:
-        delta = value - source
-        dest, length = table[source]
+    for source_start in keys:
+        destination, length = table[source_start]
+        delta = value - source_start
         if 0 <= delta <= (length - 1):
+            # A range has been hit.
             remaining = length - delta - 1
-            return dest + delta, remaining
+            return destination + delta, remaining
 
-        if value < source:
-            # Missed the map.
-            remaining = source - value - 1
-            assert remaining >= 0
+        if value < source_start:
+            # We fell into a whole between ranges, and source_start now points at the start of the next range.
+            remaining = source_start - value - 1
             break
 
+    # We ran off the end of the map, so 'remaining' is infinite.
     assert remaining >= 0
     return value, remaining
 
 
-def part2(data):
-    seeds = []
-    tmp = data[0].split()[1:]
-    while tmp:
-        seeds.append((int(tmp[0]), int(tmp[1])))
-        tmp = tmp[2:]
+def day5(data, part=2):
+    """
+    For each initial seed value, walk the value through several source-to-destination maps, and find the lowest value
+    from the final map for any seed.
 
-    assert "seed-to-soil" in data[2]
+    Part 1: The seed list is a simple list of seed values.
+    Part 2: The seed list is encoded as pairs of starting_seed and length.
+
+    :param data: The input puzzle data containing the seeds and maps.
+    :param part: Whether the seed input is interpreted using the Part 1 meaning or the Part 2 meaning.
+    :return: The lowest (best) location value for any seed.
+    """
+    seeds = []
     maps = {}
+    path = []
+    best_location = float('inf')
+
+    assert data[0].startswith('seeds')
+    if part == 1:
+        seeds = [(int(x), 1) for x in data[0].split()[1:]]
+    elif part == 2:
+        tmp = data[0].split()[1:]
+        while tmp:
+            seeds.append((int(tmp[0]), int(tmp[1])))
+            tmp = tmp[2:]
+
+    # Parse the maps into dictionaries.
     current_map = None
     for line in data[1:]:
         if not line.strip():
             continue
         if 'map:' in line:
             map_name = line.split()[0]
+            path.append(map_name)
             current_map = {}
             maps[map_name] = current_map
             continue
@@ -98,37 +74,31 @@ def part2(data):
         dest, source, length = [int(x) for x in line.split()]
         current_map[source] = (dest, length)
 
-    best_location = float('inf')
-
+    # Walk the seeds through the maps.
     for start_seed, length in seeds:
         seed = start_seed
         while seed < start_seed + length:
-            current_remaining = float('inf')
-            current_value = int(seed)
-            for segment in [
-                            "seed-to-soil",
-                            "soil-to-fertilizer",
-                            "fertilizer-to-water",
-                            "water-to-light",
-                            "light-to-temperature",
-                            "temperature-to-humidity",
-                            "humidity-to-location",
-                            ]:
+            remaining_span = float('inf')
+            value = int(seed)
+            for segment in path:
                 current_map = maps[segment]
-                new_value, new_remaining = get_dest2(current_value, current_map)
-                current_remaining = min(current_remaining, new_remaining)
-                current_value = new_value
+                value, span = get_destination(value, current_map)
+                remaining_span = min(remaining_span, span)
+            # After traversing all the maps, remember the best (lowest) location.
+            best_location = min(best_location, value)
 
-            best_location = min(best_location, current_value)
-            seed += current_remaining + 1
+            # remaining_span is how many more seeds we can go while still hitting in all the same map ranges.
+            # If we hit in the same ranges, then any more (higher) seeds we check will only have worse (higher)
+            # final outcomes.  So, skip past remaining_span seeds since they will be worse than this one.
+            seed += remaining_span + 1
 
     return best_location
 
 
 def main():
     data = read_data(__file__)
-    answer1 = part1(data)
-    answer2 = part2(data)
+    answer1 = day5(data, part=1)
+    answer2 = day5(data, part=2)
     return answer1, answer2
 
 
