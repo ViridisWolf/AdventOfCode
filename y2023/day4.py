@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-import re
 
 from AdventOfCode import read_data
 
@@ -21,11 +20,11 @@ def both_parts(data):
 
     for line in data:
         game, rest = line.split(':')
-        game_id = int(re.split(r' +', game)[1])
+        game_id = int(game.split()[1])
         winning, mine = rest.split('|')
         # Convert to sets.
-        winning = set(re.findall(r'\d+', winning))
-        mine = set(re.findall(r'\d+', mine))
+        winning = set(winning.split())
+        mine = set(mine.split())
         wins = len(winning.intersection(mine))
 
         # Part 1.
