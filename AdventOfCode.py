@@ -23,7 +23,7 @@ def read_data(caller, filename=None):
     :return: List of line strings.
     """
     if filename is None:
-        filename = pathlib.Path(caller).stem + '.txt'
+        filename = pathlib.Path(caller).stem.split('_')[0] + '.txt'
     datafile = pathlib.Path(caller).parent / 'data' / filename
     with open(datafile, 'r') as f:
         lines = f.readlines()
@@ -167,7 +167,7 @@ def exception_handler(typ, value, tb):
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--year', type=int, help="The AoC year.")
-    parser.add_argument('--day', type=int, help="The AoC day.")
+    parser.add_argument('--day', help="The AoC day. Will use the python module named 'day{day}.py.")
     parser.add_argument('--check', action='store_true', help="Check that each result matches expectation.")
     parser.add_argument('--samples', type=int, default=1, help="Sample count to take for a solution's runtime.")
     parser.add_argument('--precision', type=int, default=3, help="Number of decimal places in timestamps.")
