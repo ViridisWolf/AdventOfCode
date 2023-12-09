@@ -9,6 +9,9 @@ import pdb
 import sys
 import time
 import traceback
+import types
+
+color = types.SimpleNamespace(red='\x1b[0;31m', reset='\x1b[0m')
 
 
 def read_data(caller, filename=None):
@@ -39,9 +42,6 @@ def run_and_check(module, year, day, check=False):
     :return: The number of answers which did not match the expected value, and a string of the output.
     """
 
-    red = '\x1b[0;31m'
-    reset = '\x1b[0m'
-
     count_wrong = 0
     ret_string = ""
 
@@ -67,13 +67,13 @@ def run_and_check(module, year, day, check=False):
             continue
 
         count_wrong += 1
-        ret_string += red
+        ret_string += color.red
         if type(expected_answer) is str and '\n' in expected_answer:
             # Make sure that any multiline answer starts on a new line.
             ret_string += f"\n ^^^ Wrong answer!  Expected:\n{expected_answer}\n"
         else:
             ret_string += f"  <-- Wrong answer!  Expected {expected_answer}.\n"
-        ret_string += reset
+        ret_string += color.reset
 
     return count_wrong, ret_string
 
@@ -187,7 +187,7 @@ def main():
     result = run_all(puzzle_list, args)
     print(f"Total time: {time.perf_counter() - t0_all:0.{args.precision}f} seconds.")
     if result:
-        print(f"Failure: {result} answers were wrong.")
+        print(f"{color.red}Failure: {result} answers were wrong.{color.reset}")
 
 
 if __name__ == '__main__':
