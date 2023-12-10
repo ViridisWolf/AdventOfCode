@@ -8,7 +8,7 @@ def part1():
     # Up is +y, right is +x.
     x, y = 0, 0
 
-    lines = read_data(__file__)
+    lines = read_data()
     for line in lines:
         for char in line:
             if char == 'v':
@@ -35,7 +35,7 @@ def part2():
                 1: [0, 0]}
     turn = 0
 
-    lines = read_data(__file__)
+    lines = read_data()
     for line in lines:
         for char in line:
             if char == 'v':

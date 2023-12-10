@@ -37,7 +37,7 @@ def day5(part=1):
         return line_points
 
     points = {}
-    lines = read_data(__file__)
+    lines = read_data()
     for line in lines:
         line = line.split(' -> ')
         p0, p1 = line[0].split(','), line[1].split(',')

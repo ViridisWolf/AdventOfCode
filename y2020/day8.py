@@ -64,7 +64,7 @@ def part2(code):
 
 
 def main():
-    lines = read_data(__file__)
+    lines = read_data()
     code = []
     for line in lines:
         opcode, arg = line.split(' ')

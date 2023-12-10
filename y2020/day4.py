@@ -97,7 +97,7 @@ def part2(lines):
 
 
 def main():
-    lines = read_data(__file__)
+    lines = read_data()
     tmp_lines = []
     for line in lines:
         if ' ' in line:

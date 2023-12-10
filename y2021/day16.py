@@ -111,7 +111,7 @@ def day16():
         raise
 
     # Done defining things, start doing.
-    lines = read_data(__file__)
+    lines = read_data()
     data = ''
     for nybble in lines[0]:
         data += '{:04b}'.format(int(nybble, 16))

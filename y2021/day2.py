@@ -9,7 +9,7 @@ def main():
     horz = 0
     aim = 0
 
-    lines = read_data(__file__)
+    lines = read_data()
 
     for line in lines:
         line = line.strip()

@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 
-from AdventOfCode import read_data
-
 import re
+
+from AdventOfCode import read_data
 
 
 def day_v1(data, part):
@@ -110,7 +110,7 @@ def day_v3(data, part):
 
 
 def main():
-    data = read_data(__file__)
+    data = read_data()
     answer1 = day_v3(data, 1)
     answer2 = day_v3(data, 2)
     return answer1, answer2

@@ -41,7 +41,7 @@ def both_parts(data):
 
 
 def main():
-    data = read_data(__file__)
+    data = read_data()
     return both_parts(data)
 
 

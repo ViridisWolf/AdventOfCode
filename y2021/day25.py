@@ -30,7 +30,7 @@ def part1():
         print()
 
     cucumbers = {}
-    for row, line in enumerate(read_data(__file__)):
+    for row, line in enumerate(read_data()):
         for x, char in enumerate(line):
             if char != '.':
                 cucumbers[x,row] = char

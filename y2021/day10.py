@@ -14,7 +14,7 @@ def day10():
     corrupted_characters = []
     missing_scores = []
 
-    lines = read_data(__file__)
+    lines = read_data()
     for line in lines:
         corrupted = False
         stack = []

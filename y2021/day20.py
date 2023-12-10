@@ -71,7 +71,7 @@ class Image:
 
 
 def main():
-    lines = read_data(__file__)
+    lines = read_data()
     # lines = read_data(__file__, filename='data20_test.data')
     algorithm = lines[0]
     algorithm = algorithm.replace('.', '0')

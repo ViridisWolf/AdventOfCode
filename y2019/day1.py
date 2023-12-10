@@ -7,7 +7,7 @@ def part1():
     """ Calculate fuel needed for each module. """
     fuel = 0
 
-    lines = read_data(__file__)
+    lines = read_data()
     for line in lines:
         module_mass = int(line.strip())
         assert module_mass//2 >= 0
@@ -22,7 +22,7 @@ def part2():
 
     fuel = 0
 
-    lines = read_data(__file__)
+    lines = read_data()
     for line in lines:
         module_mass = int(line.strip())
         assert module_mass//2 >= 0

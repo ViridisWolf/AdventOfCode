@@ -14,7 +14,7 @@ def count_increases(part1=False):
         window = []
         win_index = (0, 0)
 
-    lines = read_data(__file__)
+    lines = read_data()
     for line in lines:
         window = window[win_index[0]: win_index[1]] + [int(line.strip())]
 

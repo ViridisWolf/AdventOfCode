@@ -137,7 +137,7 @@ def main():
 
     # Parse the scanner data.
     scanners = []
-    lines = read_data(__file__)
+    lines = read_data()
     for line in lines:
         if '-- scanner ' in line:
             id = int(line[11:].split()[0])

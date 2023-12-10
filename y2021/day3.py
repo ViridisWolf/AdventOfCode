@@ -6,7 +6,7 @@ from AdventOfCode import read_data
 
 
 def main():
-    lines = read_data(__file__)
+    lines = read_data()
 
     bits = [int(x) for x in lines[0].strip()]
     for count, line in enumerate(lines[1:]):

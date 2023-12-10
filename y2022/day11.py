@@ -54,7 +54,7 @@ def day(data, part):
 
 
 def main():
-    data = read_data(__file__)
+    data = read_data()
     return day(data, part=1), day(data, part=2)
 
 

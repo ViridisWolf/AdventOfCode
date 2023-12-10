@@ -13,7 +13,7 @@ def part1():
             sum += last_roll + 1
         return last_roll, sum
 
-    lines = read_data(__file__)
+    lines = read_data()
     players = {}
     for line in lines:
         if 'Player ' in line:

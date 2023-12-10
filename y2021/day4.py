@@ -18,7 +18,7 @@ def day4():
                 return True
 
     # Read input.
-    lines = read_data(__file__)
+    lines = read_data()
     draws = [int(x) for x in lines[0].split(',')]
     boards = []
     board = None

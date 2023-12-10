@@ -35,7 +35,7 @@ def day_v4(data, part):
 
 
 def main():
-    data = read_data(__file__)
+    data = read_data()
     answer1 = day_v4(data, 1)
     answer2 = day_v4(data, 2)
     return answer1, answer2

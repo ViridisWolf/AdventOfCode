@@ -4,6 +4,7 @@ from collections import namedtuple
 
 from AdventOfCode import read_data
 
+
 def day13(silent=False):
     class Paper:
         Point = namedtuple("Point", "x y")
@@ -72,7 +73,7 @@ def day13(silent=False):
     folds = []
     paper = Paper()
 
-    lines = read_data(__file__)
+    lines = read_data()
 
     for line in lines:
         line = line.strip()

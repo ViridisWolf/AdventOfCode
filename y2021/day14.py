@@ -7,7 +7,7 @@ def day14(loops, part):
     """ Polymerizaion """
     pair_rules = {}
 
-    lines = read_data(__file__)
+    lines = read_data()
     template = lines[0].strip()
     for line in lines[1:]:
         line = line.strip()
