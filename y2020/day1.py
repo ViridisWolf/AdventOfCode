@@ -29,7 +29,7 @@ def day1_part2(lines):
 
 
 def main():
-    lines = read_data(__file__)
+    lines = read_data()
     numbers = tuple(int(x) for x in lines)
     answer1 = day1(numbers)
     answer2 = day1_part2(numbers)

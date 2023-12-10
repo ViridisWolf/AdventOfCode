@@ -14,7 +14,7 @@ def day8():
 
     # Parse the input into a more usable format.
     displays = []
-    lines = read_data(__file__)
+    lines = read_data()
     for line in lines:
         patterns = []
         outputs = []

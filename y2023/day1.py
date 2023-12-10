@@ -159,7 +159,7 @@ def parts(data, part=2):
 
 
 def main():
-    data = read_data(__file__)
+    data = read_data()
     answer1 = parts(data, part=1)
     answer2 = parts(data, part=2)
     return answer1, answer2

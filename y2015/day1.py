@@ -22,7 +22,7 @@ def part2(lines):
 
 
 def main():
-    data = read_data(__file__)
+    data = read_data()
     return part1(data), part2(data)
 
 

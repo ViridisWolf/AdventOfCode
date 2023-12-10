@@ -47,7 +47,7 @@ def part2(data):
 
 
 def main():
-    data = read_data(__file__)
+    data = read_data()
     answer1 = part1(data)
     answer2 = part2(data)
     return answer1, answer2

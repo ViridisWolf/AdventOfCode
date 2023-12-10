@@ -10,7 +10,7 @@ def manhattan_distance(p1, p2):
 
 def part1():
     wire_maps = []
-    for line in read_data(__file__):
+    for line in read_data():
         wire = set()
         wire_maps.append(wire)
         position = (0, 0)
@@ -37,7 +37,7 @@ def part1():
 
 def part2():
     wire_maps = []
-    for line in read_data(__file__):
+    for line in read_data():
         wire = {}
         wire_maps.append(wire)
         position = (0, 0)

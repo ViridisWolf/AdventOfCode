@@ -120,7 +120,7 @@ def part2(max_size=None, part=2):
 
     # Done defining functions. Read the input data.
     instructions = []
-    lines = read_data(__file__)
+    lines = read_data()
     for line in lines:
         turn, line = line.split(' ', 1)
         turn = True if turn == 'on' else False

@@ -7,7 +7,7 @@ def day2():
     paper = 0
     ribbon = 0
 
-    lines = read_data(__file__)
+    lines = read_data()
     for box in lines:
         h, w, l = [int(x) for x in box.split('x')]
         sides_area = (h*w, h*l, w*l)

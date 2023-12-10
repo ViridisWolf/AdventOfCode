@@ -158,7 +158,7 @@ def day(line):
 
 
 def main():
-    data = read_data(__file__)
+    data = read_data()
     line = data[0]
     return day(line)
 

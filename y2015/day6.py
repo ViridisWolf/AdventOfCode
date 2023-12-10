@@ -214,7 +214,7 @@ def part2_alt(lines):
 
 
 def main():
-    lines = read_data(__file__)
+    lines = read_data()
     answer1 = fast(lines, part=1)
     answer2 = fast(lines, part=2)
     # answer1 = part1_alt(lines)

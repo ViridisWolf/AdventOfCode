@@ -39,7 +39,7 @@ def day15(tile_right, tile_down, part):
         return 1
         # return risk_est  # This causes incorrect results...
 
-    lines = read_data(__file__)
+    lines = read_data()
     map_width = len(lines[0])
     map_height = len(lines)
 

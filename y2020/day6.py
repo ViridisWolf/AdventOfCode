@@ -63,7 +63,7 @@ def part2(lines):
 
 
 def main():
-    lines = read_data(__file__)
+    lines = read_data()
     answer1 = part1(list(lines))
     answer2 = part2(list(lines))
     return answer1, answer2

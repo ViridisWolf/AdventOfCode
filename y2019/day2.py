@@ -61,7 +61,7 @@ class IntcodeComputer:
 
 
 def part1():
-    computer = IntcodeComputer(read_data(__file__)[0])
+    computer = IntcodeComputer(read_data()[0])
     computer.data[1] = 12
     computer.data[2] = 2
     computer.run()
@@ -71,7 +71,7 @@ def part1():
 
 
 def part2():
-    line = read_data(__file__)[0]
+    line = read_data()[0]
     noun = -1
     output = None
     while output != 19690720:

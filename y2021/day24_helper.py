@@ -2,14 +2,13 @@
 
 import random
 import re
-from pprint import pprint
 
 from AdventOfCode import read_data
 
 
 def model_check_orig(model_number):
     # Convert puzzle input to Python code for easier reading.
-    lines = read_data(__file__)
+    lines = read_data()
     index = 0
     instructions = []
     for line in lines:

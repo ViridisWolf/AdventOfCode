@@ -3,6 +3,7 @@
 import argparse
 import concurrent.futures
 import importlib
+import inspect
 import os
 import pathlib
 import pdb
@@ -14,17 +15,22 @@ import types
 color = types.SimpleNamespace(red='\x1b[0;31m', reset='\x1b[0m')
 
 
-def read_data(caller, filename=None):
+def read_data(filename=None):
     """
     Read the specified input data file and strip any extra white space from each line.
+    The input data file is expected to be inside a 'data' folder which is alongside the caller's .py file.
 
-    :param caller: The path of the caller, e.g. __file__.
     :param filename: The name of the data file, or None to use the format of "day#.txt".
     :return: List of line strings.
     """
+    folder = 'data'
+    caller = inspect.currentframe().f_back.f_code.co_filename
     if filename is None:
         filename = pathlib.Path(caller).stem.split('_')[0] + '.txt'
-    datafile = pathlib.Path(caller).parent / 'data' / filename
+    if os.sep in filename or '/' in filename:
+        # If the filename contains any path info, then assume it already handles any and directory changes.
+        folder = ''
+    datafile = pathlib.Path(caller).parent / folder / filename
     with open(datafile, 'r') as f:
         lines = f.readlines()
     lines = [line.strip('\n\r') for line in lines]

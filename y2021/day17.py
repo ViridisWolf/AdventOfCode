@@ -45,7 +45,7 @@ def day17():
                 hit = 'y'
             return hit
 
-    lines = read_data(__file__)
+    lines = read_data()
     for line in lines:
         if 'target area: ' in line:
             x, y = line[13:].split(', ')

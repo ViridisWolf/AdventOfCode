@@ -41,7 +41,7 @@ def day(lines):
 
 
 def main():
-    lines = read_data(__file__)
+    lines = read_data()
     return day(lines)
 
 

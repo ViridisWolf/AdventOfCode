@@ -88,7 +88,7 @@ def part2_branch_cut(locations, distances):
 
 
 def main():
-    data = read_data(__file__)
+    data = read_data()
 
     # Parse the puzzle input data into a list of locations and the distances between them.
     distances = {}

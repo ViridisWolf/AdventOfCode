@@ -28,7 +28,7 @@ def day2(passwords):
 
 
 def main():
-    lines = read_data(__file__)
+    lines = read_data()
     passwords = []
     for line in lines:
         match = re.search(r'(\d+)-(\d+) (\w): (\w+)', line)

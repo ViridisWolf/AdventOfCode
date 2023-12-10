@@ -62,7 +62,7 @@ def day11(part):
         # Set steps to arbitrarily high.
         steps = 9999999
 
-    for y, line in enumerate(read_data(__file__)):
+    for y, line in enumerate(read_data()):
         row = []
         for char in line:
             row.append(int(char))

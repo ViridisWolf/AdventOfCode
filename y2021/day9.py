@@ -63,7 +63,7 @@ def day9():
     minimums = []
 
     # Read in the height map.
-    for y, line in enumerate(read_data(__file__)):
+    for y, line in enumerate(read_data()):
         for x, height in enumerate(line):
             if x >= len(heightmap):
                 heightmap.append([])

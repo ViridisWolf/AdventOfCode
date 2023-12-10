@@ -36,7 +36,7 @@ def part2(adapters):
 
 def main():
     # The numbers in the data file represent "jolt" ratings for adapters.
-    lines = read_data(__file__)
+    lines = read_data()
     lines = sorted([int(x) for x in lines])
     # Add the "built-in" adaptor, which is 3 higher than the largest adaptor in the input.
     lines.append(lines[-1] + 3)

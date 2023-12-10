@@ -108,7 +108,7 @@ def day(data):
 
 
 def main():
-    data = read_data(__file__)
+    data = read_data()
     answer1, answer2 = day(data)
     return answer1, answer2
 

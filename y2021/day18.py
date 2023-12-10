@@ -130,7 +130,7 @@ def day18():
         left, right = snail
         return 3*magnitude(left) + 2*magnitude(right)
 
-    lines = read_data(__file__)
+    lines = read_data()
     sea = []
     for line in lines:
         sea.append(eval(line))
