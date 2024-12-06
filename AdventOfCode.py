@@ -7,17 +7,19 @@ import inspect
 import os
 import pathlib
 import pdb
+import statistics
 import sys
 import time
 import traceback
 import types
 
 color = types.SimpleNamespace(red='\x1b[0;31m', reset='\x1b[0m')
+average = types.SimpleNamespace(mean='mean', median='median', fastest='fastest')
 
 
 def read_data(filename=None):
     """
-    Read the specified input data file and strip any extra white space from each line.
+    Read the specified input data file and strip any line ending characters from each line.
     The input data file is expected to be inside a 'data' folder which is alongside the caller's .py file.
 
     :param filename: The name of the data file, or None to use the format of "day#.txt".
@@ -88,20 +90,32 @@ def runtime(args):
     """
     Import and run the puzzle module.  Adds run duration info to the result string.
 
-    :param args: Tuple containing the year, day, check, and samples variables.
+    :param args: Tuple containing the year, day, check, samples, and method variables.
     :return: 2-tuple of the error count and the result string.
     """
 
-    year, day, check, samples, precision = args
+    year, day, check, samples, precision, method = args
     assert samples >= 1
 
     module = get_day_module(year, day)
 
-    t0 = time.perf_counter()
+    times = []
     for _ in range(samples):
+        t0 = time.perf_counter()
         errors, ret_string = run_and_check(module, year, day, check)
-    t1 = time.perf_counter()
-    ret_string += f"^^^ ran in {(t1-t0)/samples:0.{precision}f} seconds {'average ' if samples > 1 else ''}^^^"
+        t1 = time.perf_counter()
+        times.append(t1-t0)
+
+    if samples == 1:
+        duration = times[0]
+    elif method == average.mean:
+        duration = statistics.mean(times)
+    elif method == average.median:
+        duration = statistics.median(times)
+    elif method == average.fastest:
+        duration = min(times)
+    ret_string += f"^^^ ran in {duration:.{precision}f} seconds {'(' + method + ') ' if samples > 1 else ''}^^^"
+
     return errors, ret_string
 
 
@@ -177,6 +191,8 @@ def main():
     parser.add_argument('--check', action='store_true', help="Check that each result matches expectation.")
     parser.add_argument('--samples', type=int, default=1, help="Sample count to take for a solution's runtime.")
     parser.add_argument('--precision', type=int, default=3, help="Number of decimal places in timestamps.")
+    parser.add_argument('--average', type=str, default="median", choices=average.__dict__,
+                        help="Number of decimal places in timestamps.")
     parser.add_argument('--threads', type=int, default=os.cpu_count(), help="Number of compute threads to use.")
     parser.add_argument('--pdb', action='store_true', help="Drop into PDB when there is an unhandled exception.")
     args = parser.parse_args()
@@ -185,7 +201,7 @@ def main():
         sys.excepthook = exception_handler
 
     years = [args.year] if args.year else get_years()
-    puzzle_list = [(y, d, args.check, args.samples, args.precision)
+    puzzle_list = [(y, d, args.check, args.samples, args.precision, args.average)
                    for y in years
                    for d in ([args.day] if args.day else get_days(y))]
 
