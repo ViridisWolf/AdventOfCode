@@ -30,7 +30,7 @@ def read_data(filename=None):
     if filename is None:
         filename = pathlib.Path(caller).stem.split('_')[0] + '.txt'
     if os.sep in filename or '/' in filename:
-        # If the filename contains any path info, then assume it already handles any and directory changes.
+        # If the filename contains any path info, then assume it already handles any directory changes.
         folder = ''
     datafile = pathlib.Path(caller).parent / folder / filename
     with open(datafile, 'r') as f:
