@@ -25,6 +25,7 @@ def both(lines):
 
     An ingredient is fresh if it falls within any of the specified ranges.
     """
+    # Just read the 'fresh' ranges and sort them.
     tmp_ranges = []
     for line_index, line in enumerate(lines):
         if not line:
@@ -33,6 +34,7 @@ def both(lines):
         tmp_ranges.append((lower, upper))
     tmp_ranges.sort()
 
+    # Create a sorted list of non-overlapping ranges.
     ranges = []
     for lower, upper in tmp_ranges:
         prev_limit = ranges[-1][1] if ranges else -1
@@ -44,12 +46,14 @@ def both(lines):
             assert prev_limit < upper
             ranges.append((lower, upper))
 
+    # Part 1: Count the available fresh ingredients.
     fresh_count = 0
     for line in lines[line_index+1:]:
         ingredient = int(line)
         if is_fresh(ranges, ingredient):
             fresh_count += 1
 
+    # Part 2: count the types of possible fresh ingredients.
     fresh_types = 0
     for lower, upper in ranges:
         fresh_types += upper - lower + 1

@@ -32,7 +32,7 @@ def display(field):
 
 
 def is_reachable(roll, field):
-    """Return whether the rolls of paper can be reached (has fewer than 4 neighbors)."""
+    """Return whether the roll of paper can be reached (has fewer than 4 neighbors)."""
     neighbors = 0
     directions = [(-1, -1), (0, -1), (1, -1),
                   (-1, 0),           (1, 0),
