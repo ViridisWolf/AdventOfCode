@@ -7,6 +7,7 @@ import inspect
 import os
 import pathlib
 import pdb
+import requests
 import statistics
 import sys
 import time
@@ -20,23 +21,62 @@ average = types.SimpleNamespace(mean='mean', median='median', fastest='fastest')
 def read_data(filename=None):
     """
     Read the specified input data file and strip any line ending characters from each line.
-    The input data file is expected to be inside a 'data' folder which is alongside the caller's .py file.
+
+    The input data file is expected to be inside a 'data' folder which is alongside the caller's .py file.  If that file
+    doesn't exist, it will be created by downloading it.
 
     :param filename: The name of the data file, or None to use the format of "day#.txt".
     :return: List of line strings.
     """
     folder = 'data'
     caller = inspect.currentframe().f_back.f_code.co_filename
+    allow_download = filename is None
     if filename is None:
         filename = pathlib.Path(caller).stem.split('_')[0] + '.txt'
     if os.sep in filename or '/' in filename:
         # If the filename contains any path info, then assume it already handles any directory changes.
         folder = ''
     datafile = pathlib.Path(caller).parent / folder / filename
+    if allow_download and not datafile.exists():
+        _download_puzzle_data(datafile)
     with open(datafile, 'r') as f:
         lines = f.readlines()
     lines = [line.strip('\n\r') for line in lines]
     return lines
+
+
+def _download_puzzle_data(datafile):
+    """
+    Download puzzle input data file and store it the specified location.
+               ​‌‍‎‏
+    Args:
+        datafile (str, Path): The filename to save the data file to.  This must be in the "y<year>/data/day<day>.txt"
+                              format.
+    """
+    cookie_file = pathlib.Path("~/.config/advent_of_code/session")
+    datafile = pathlib.Path(datafile)
+
+    assert datafile.parts[-2] == "data"
+    year = datafile.parts[-3].removeprefix('y')
+    day = datafile.parts[-1].removeprefix('day').split('.')[0]
+
+    # Get the session cookie.
+    if not cookie_file.exists():
+        print(f"Paste the Advent of Code website session cookie string.  It will be saved to {cookie_file}.")
+        cookie_str = input().strip()
+        cookie_file.parent.mkdir(parents=True, exist_ok=True)
+        cookie_file.write_text(cookie_str)
+    cookie_str = cookie_file.read_text()
+
+    # Download and save the file.
+    url = f"https://adventofcode.com/{year}/day/{day}/input"
+    response = requests.get(url, headers={'cookie': f"session={cookie_str}"})
+    if response.status_code != requests.codes.ok:
+        print(color.red + f"Received error code when downloading puzzle input: {response.status_code}" + color.reset)
+        raise requests.exceptions.ConnectionError("Couldn't download puzzle input.  "
+                                                 f"Is the session cookie stale?  Delete {cookie_file} if so.")
+    datafile.parent.mkdir(parents=True, exist_ok=True)
+    datafile.write_text(response.text)
 
 
 def run_and_check(module, year, day, check=False):
