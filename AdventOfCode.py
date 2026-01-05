@@ -69,13 +69,15 @@ def _download_puzzle_data(datafile):
     cookie_str = cookie_file.read_text()
 
     # Download and save the file.
+    datafile.parent.mkdir(parents=True, exist_ok=True)
     url = f"https://adventofcode.com/{year}/day/{day}/input"
-    response = requests.get(url, headers={'cookie': f"session={cookie_str}"})
+    headers = {'cookie': f"session={cookie_str}",
+               'user-agent': "github.com/ViridisWolf/AdventOfCode by thunderwolf89@gmail.com"}
+    response = requests.get(url, headers=headers)
     if response.status_code != requests.codes.ok:
         print(color.red + f"Received error code when downloading puzzle input: {response.status_code}" + color.reset)
         raise requests.exceptions.ConnectionError("Couldn't download puzzle input.  "
-                                                 f"Is the session cookie stale?  Delete {cookie_file} if so.")
-    datafile.parent.mkdir(parents=True, exist_ok=True)
+                                                  f"Is the session cookie stale?  Delete {cookie_file} if so.")
     datafile.write_text(response.text)
 
 
@@ -144,7 +146,7 @@ def runtime(args):
         t0 = time.perf_counter()
         errors, ret_string = run_and_check(module, year, day, check)
         t1 = time.perf_counter()
-        times.append(t1-t0)
+        times.append(t1 - t0)
 
     if samples == 1:
         duration = times[0]
